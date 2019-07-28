@@ -57,7 +57,7 @@ function attachPostUserExtras(api)
         var j;
         for (j = 0; j < attrs.post_user_extras.badges.length; j++)
         {
-          badges.push(dec.h("div.badge.badge_" + attrs.post_user_extras.badges[j].id,{ title: attrs.post_user_extras.badges[j].name}));
+          badges.push(dec.h("div.img",{ title: attrs.post_user_extras.badges[j].name}));
         }
         array.push(badges);
       }
