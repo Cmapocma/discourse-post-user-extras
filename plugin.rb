@@ -44,7 +44,7 @@ after_initialize do
           trust_level: object.user.trust_level, 
           admin: object.user.admin, 
           moderator: object.user.moderator, 
-          badges: object.user.featured_user_badges,
+          badges: object.user.user_badges,
           custom_fields: object.user.custom_fields
         }
       end
@@ -68,7 +68,9 @@ after_initialize do
 
   #DiscourseEvent.on(:user_badge_granted) do |badge_id, user_id|
   #  if SiteSetting.post_user_extras_enabled
-  #    user.custom_fields['signature_cooked'] = PrettyText.cook(user.custom_fields['signature_raw'])
+  #   user = User.where(user_id: user.id)
+  #    user.custom_fields['user_bages'] = PrettyText.cook(user.custom_fields['signature_raw'])
+  #    user.save
   #  end
   #end
 
