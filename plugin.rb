@@ -33,7 +33,7 @@ after_initialize do
   User.register_custom_field_type('signature_clear_home', :text)
   User.register_custom_field_type('signature_hobby', :text)
 
-  register_editable_user_custom_field [:see_groups_icon, :see_badges_icon, :see_signatures, :signature_url, :signature_raw, :signature_no_smoking, :signature_no_drink, :signature_proper_nutrition, :signature_fitnes, :signature_clear_home, :signature_hobby]
+  register_editable_user_custom_field [:see_groups_icon, :see_badges_icon, :see_signatures, :signature_raw, :signature_no_smoking, :signature_no_drink, :signature_proper_nutrition, :signature_fitnes, :signature_clear_home, :signature_hobby]
 
   if SiteSetting.post_user_extras_enabled then
     add_to_serializer(:post, :post_user_extras, false) {
