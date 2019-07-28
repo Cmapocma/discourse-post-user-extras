@@ -63,14 +63,8 @@ after_initialize do
   end
 
   DiscourseEvent.on(:user_updated) do |user|
-    if SiteSetting.post_user_extras_enabled? && user.custom_fields['signature_raw']
-      cooked_sig = PrettyText.cook(user.custom_fields['signature_raw'], omit_nofollow: user.has_trust_level?(TrustLevel[3]) && !SiteSetting.tl3_links_no_follow)
-
-      if cooked_sig != user.custom_fields['signature_cooked']
-        user.custom_fields['signature_cooked'] = cooked_sig
-        user.save
-      end
-
+    if SiteSetting.post_user_extras_enabled
+      user.custom_fields['signature_cooked'] = PrettyText.cook(user.custom_fields['signature_raw'])
     end
   end
 
