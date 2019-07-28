@@ -11,7 +11,6 @@ enabled_site_setting :post_user_extras_enabled
 DiscoursePluginRegistry.serialized_current_user_fields << "see_groups_icon"
 DiscoursePluginRegistry.serialized_current_user_fields << "see_badges_icon"
 DiscoursePluginRegistry.serialized_current_user_fields << "see_signatures"
-DiscoursePluginRegistry.serialized_current_user_fields << "signature_url"
 DiscoursePluginRegistry.serialized_current_user_fields << "signature_raw"
 DiscoursePluginRegistry.serialized_current_user_fields << "signature_no_smoking"
 DiscoursePluginRegistry.serialized_current_user_fields << "signature_no_drink"
@@ -67,6 +66,18 @@ after_initialize do
       user.custom_fields['signature_cooked'] = PrettyText.cook(user.custom_fields['signature_raw'])
     end
   end
+
+  #DiscourseEvent.on(:user_badge_granted) do |badge_id, user_id|
+  #  if SiteSetting.post_user_extras_enabled
+  #    user.custom_fields['signature_cooked'] = PrettyText.cook(user.custom_fields['signature_raw'])
+  #  end
+  #end
+
+  #DiscourseEvent.on(:user_badge_removed) do |badge_id, user_id|
+  #  if SiteSetting.post_user_extras_enabled
+  #    user.custom_fields['signature_cooked'] = PrettyText.cook(user.custom_fields['signature_raw'])
+  #  end
+  #end
 
 end
 
