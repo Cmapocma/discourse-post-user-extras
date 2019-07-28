@@ -1,0 +1,55 @@
+.topic-avatar .avatar-flair,
+.collapsed-info .user-profile-avatar .avatar-flair
+{
+    background-size: 17px 17px !important; 
+    bottom: -5px !important; 
+    right: -8px !important; 
+    width: 17px !important; 
+    height: 17px !important; 
+    font-size: 0.8em !important;
+}
+
+div.group-icon-widget div 
+{
+    display: inline-flex; 
+    background-size: 17px 17px; 
+    width: 17px; 
+    height: 17px;
+    align-items: center;
+    justify-content: center;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+div.group-icon-widget div.fa
+{
+    border-radius: 12px;
+    font-size: 0.8em;
+}
+
+div.group-icon-widget
+{
+    width: 60px;
+    padding-top: 10px;
+    position: absolute;
+}
+
+div.topic-body
+{
+    padding-left:16px !important;
+}
+
+.topic-body .topic-meta-data, .topic-body .cooked 
+{
+    padding: 0 11px 0.25em 0px !important;
+}
+
+.signature-counter
+{
+    display: inline-block;
+}
+
+div.signatures div.d-editor-preview-wrapper
+{
+    overflow: unset;
+}
