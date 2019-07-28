@@ -50,13 +50,11 @@ after_initialize do
       end
     }
 
-    add_to_serializer(:user, :post_user_extras, false) {
+    add_to_serializer(:user, :custom_fields, false) {
       if object.custom_fields == nil then
         {}
       else
-        {
-          custom_fields: object.custom_fields
-        }
+        object.custom_fields
       end
     }
   end
@@ -64,6 +62,7 @@ after_initialize do
   DiscourseEvent.on(:user_updated) do |user|
     if SiteSetting.post_user_extras_enabled
       user.custom_fields['signature_cooked'] = PrettyText.cook(user.custom_fields['signature_raw'])
+      user.save
     end
   end
 

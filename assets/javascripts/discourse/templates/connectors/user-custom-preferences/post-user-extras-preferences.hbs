@@ -3,7 +3,7 @@
     <label class="control-label">Включить иконки групп</label>
     <div class="controls bio-composer input-xxlarge">
       <label class='checkbox-label'>
-        {{input type="checkbox" checked=model.post_user_extras.custom_fields.see_groups_icon}}
+        {{input type="checkbox" checked=model.custom_fields.see_groups_icon}}
           Видеть иконки групп под аватаром
       </label>
     </div>
@@ -12,7 +12,7 @@
     <label class="control-label">Включить иконки наград</label>
     <div class="controls bio-composer input-xxlarge">
       <label class='checkbox-label'>
-        {{input type="checkbox" checked=model.post_user_extras.custom_fields.see_badges_icon}}
+        {{input type="checkbox" checked=model.custom_fields.see_badges_icon}}
           Видеть иконки наград под аватаром
       </label>
     </div>
@@ -21,7 +21,7 @@
     <label class="control-label">Включить подпись</label>
     <div class="controls bio-composer input-xxlarge">
       <label class='checkbox-label'>
-        {{input type="checkbox" checked=model.post_user_extras.custom_fields.see_signatures}}
+        {{input type="checkbox" checked=model.custom_fields.see_signatures}}
           Видеть подписи пользователей под сообщениями
       </label>
     </div>
@@ -29,14 +29,14 @@
   <div class="control-group signatures">
     <label class="control-label">Моя подпись</label>
     <div class="controls">
-      {{d-editor value=model.post_user_extras.custom_fields.signature_raw showUploadModal="showUploadModal"}}
+      {{d-editor value=model.custom_fields.signature_raw showUploadModal="showUploadModal"}}
     </div>
   </div>
   <div class="control-group signatures">
     <label class="control-label"><img src="/uploads/default/original/signature/nosmoking.png" style="width: 24px;padding-right: 4px;" /> Не курю</label>
     <div class="controls">
       <label class='text-label'>
-          {{input type="text" class="input-medium" value=model.post_user_extras.custom_fields.signature_no_smoking}}
+          {{input type="text" class="input-medium" value=model.custom_fields.signature_no_smoking}}
         </label>
         <div class="desc">дату пишите в формате "год-месяц-день", пример: 2019-03-25</div>
     </div>
@@ -45,7 +45,7 @@
     <label class="control-label"><img src="/uploads/default/original/signature/nodrink.png" style="width: 24px;padding-right: 4px;" /> Не пью</label>
     <div class="controls">
       <label class='text-label'>
-          {{input type="text" class="input-medium" value=model.post_user_extras.custom_fields.signature_no_drink}}
+          {{input type="text" class="input-medium" value=model.custom_fields.signature_no_drink}}
         </label>
         <div class="desc">дату пишите в формате "год-месяц-день", пример: 2019-03-25</div>
     </div>
@@ -54,7 +54,7 @@
     <label class="control-label"><img src="/uploads/default/original/signature/pp.png" style="width: 24px;padding-right: 4px;" /> На ПП</label>
     <div class="controls">
       <label class='text-label'>
-          {{input type="text" class="input-medium" value=model.post_user_extras.custom_fields.signature_proper_nutrition}}
+          {{input type="text" class="input-medium" value=model.custom_fields.signature_proper_nutrition}}
         </label>
         <div class="desc">дату пишите в формате "год-месяц-день", пример: 2019-03-25</div>
     </div>
@@ -63,7 +63,7 @@
     <label class="control-label"><img src="/uploads/default/original/signature/fit.png" style="width: 24px;padding-right: 4px;" /> На спорте</label>
     <div class="controls">
       <label class='text-label'>
-          {{input type="text" class="input-medium" value=model.post_user_extras.custom_fields.signature_fitnes}}
+          {{input type="text" class="input-medium" value=model.custom_fields.signature_fitnes}}
         </label>
         <div class="desc">дату пишите в формате "год-месяц-день", пример: 2019-03-25</div>
     </div>
@@ -72,7 +72,7 @@
     <label class="control-label"><img src="/uploads/default/original/signature/home.png" style="width: 24px;padding-right: 4px;" /> В доме чисто</label>
     <div class="controls">
       <label class='text-label'>
-          {{input type="text" class="input-medium" value=model.post_user_extras.custom_fields.signature_clear_home}}
+          {{input type="text" class="input-medium" value=model.custom_fields.signature_clear_home}}
         </label>
         <div class="desc">дату пишите в формате "год-месяц-день", пример: 2019-03-25</div>
     </div>
@@ -81,7 +81,7 @@
     <label class="control-label"><img src="/uploads/default/original/signature/hobby.png" style="width: 24px;padding-right: 4px;" /> С хобби</label>
     <div class="controls">
       <label class='text-label'>
-          {{input type="text" class="input-medium" value=model.post_user_extras.custom_fields.signature_hobby}}
+          {{input type="text" class="input-medium" value=model.custom_fields.signature_hobby}}
         </label>
         <div class="desc">дату пишите в формате "год-месяц-день", пример: 2019-03-25</div>
     </div>
