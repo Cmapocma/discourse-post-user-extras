@@ -44,7 +44,7 @@ after_initialize do
           trust_level: object.user.trust_level, 
           admin: object.user.admin, 
           moderator: object.user.moderator, 
-          badges: object.user.user_badges.includes(:badges),
+          badges: object.user.user_badges,
           custom_fields: object.user.custom_fields
         }
       end
