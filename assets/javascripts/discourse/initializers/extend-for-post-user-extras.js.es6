@@ -2,7 +2,7 @@ import { withPluginApi } from "discourse/lib/plugin-api";
 import { iconNode, convertIconClass } from "discourse-common/lib/icon-library";
 import RawHtml from "discourse/widgets/raw-html";
 
-function attachPostUserExtras(api, badges) 
+function attachPostUserExtras(api) 
 {
   api.includePostAttributes("post_user_extras");
 
@@ -54,11 +54,6 @@ function attachPostUserExtras(api, badges)
       if (see_badges_icon) 
       {
         var userbadges = [];
-        var a;
-        for (a = 0; a < badges.length; a++)
-        {
-          userbadges.push(dec.h("div.badge.qqqbadge_" + badges[a].id, { title: badges[a].name}));
-        }
         var j;
         for (j = 0; j < attrs.post_user_extras.badges.length; j++)
         {
@@ -162,9 +157,7 @@ export default
     const siteSettings = container.lookup("site-settings:main");
     if (siteSettings.post_user_extras_enabled) 
     {
-      var badges; 
-      $.getJSON(location.protocol + "//" + location.host + '/badges.json', function(data) { badges = data; });
-      withPluginApi("0.1", api => attachPostUserExtras(api, badges));
+      withPluginApi("0.1", api => attachPostUserExtras(api));
     }
   }
 };

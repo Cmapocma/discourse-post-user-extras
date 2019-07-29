@@ -66,19 +66,25 @@ after_initialize do
     end
   end
 
-  #DiscourseEvent.on(:user_badge_granted) do |badge_id, user_id|
-  #  if SiteSetting.post_user_extras_enabled
-  #   user = User.where(user_id: user.id)
-  #    user.custom_fields['user_bages'] = PrettyText.cook(user.custom_fields['signature_raw'])
-  #    user.save
-  #  end
-  #end
+  DiscourseEvent.on(:user_badge_granted) do |badge_id, user_id|
+    if SiteSetting.post_user_extras_enabled
+      user = User.where(user_id: user.id)
+      badges = Badge.all;
+      serialized = serialize_data(badges, BadgeIndexSerializer, root: "badges", include_long_description: false)
+      user.custom_fields['user_bages'] = serialized
+      user.save
+    end
+  end
 
-  #DiscourseEvent.on(:user_badge_removed) do |badge_id, user_id|
-  #  if SiteSetting.post_user_extras_enabled
-  #    user.custom_fields['signature_cooked'] = PrettyText.cook(user.custom_fields['signature_raw'])
-  #  end
-  #end
+  DiscourseEvent.on(:user_badge_removed) do |badge_id, user_id|
+    if SiteSetting.post_user_extras_enabled
+      user = User.where(user_id: user.id)
+      badges = Badge.all;
+      serialized = serialize_data(badges, BadgeIndexSerializer, root: "badges", include_long_description: false)
+      user.custom_fields['user_bages'] = serialized
+      user.save
+    end
+  end
 
 end
 
