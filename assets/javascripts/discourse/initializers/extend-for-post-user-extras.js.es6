@@ -7,8 +7,7 @@ function attachPostUserExtras(api)
   api.includePostAttributes("post_user_extras");
 
   api.decorateWidget("post-avatar:after", dec => {
-    const attrs = dec.attrs;
-    if (Ember.isEmpty(attrs.post_user_extras)) 
+    if (Ember.isEmpty(dec.attrs.post_user_extras)) 
     {
       return;
     }
@@ -16,14 +15,13 @@ function attachPostUserExtras(api)
     const currentUser = api.getCurrentUser();
     if (currentUser) 
     {
-      var array = getArrayIconGroupsAndBadges(currentUser, attrs.post_user_extras);
+      var array = getArrayIconGroupsAndBadges(currentUser, dec);
       return dec.h("div.group-icon-widget", array);
     }
   });
 
   api.decorateWidget('poster-name:after', dec => {
-    const attrs = dec.attrs;
-    if (Ember.isEmpty(attrs.post_user_extras)) 
+    if (Ember.isEmpty(dec.attrs.post_user_extras)) 
     {
       return;
     }
@@ -31,7 +29,7 @@ function attachPostUserExtras(api)
     const currentUser = api.getCurrentUser();
     if (currentUser) 
     {
-      var array = getArrayIconGroupsAndBadges(currentUser, attrs.post_user_extras);
+      var array = getArrayIconGroupsAndBadges(currentUser, dec);
       return dec.h("div.group-icon-widget-modile", array);
     }
   });
@@ -69,8 +67,9 @@ function attachPostUserExtras(api)
   });
 }
 
-function getArrayIconGroupsAndBadges(currentUser, post_user_extras)
+function getArrayIconGroupsAndBadges(currentUser, dec)
 {
+  var post_user_extras = dec.attrs.post_user_extras;
   var array = [];
   const see_groups_icon = currentUser.get("custom_fields.see_groups_icon");
   if (see_groups_icon) 
