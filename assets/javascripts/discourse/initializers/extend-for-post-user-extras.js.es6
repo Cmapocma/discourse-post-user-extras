@@ -1,7 +1,7 @@
 import { withPluginApi } from "discourse/lib/plugin-api";
 import { iconNode, convertIconClass } from "discourse-common/lib/icon-library";
 import RawHtml from "discourse/widgets/raw-html";
-import Badge from "discourse/models/badge";
+import { ajax } from "discourse/lib/ajax";
 
 function attachPostUserExtras(api, badges) 
 {
@@ -163,7 +163,7 @@ export default
     const siteSettings = container.lookup("site-settings:main");
     if (siteSettings.post_user_extras_enabled) 
     {
-      const badges = Badge.findAll().badges; 
+      const badges = ajax(`/badges.json`); 
       withPluginApi("0.1", api => attachPostUserExtras(api, badges));
     }
   }
