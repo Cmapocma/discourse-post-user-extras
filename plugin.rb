@@ -62,9 +62,7 @@ after_initialize do
   DiscourseEvent.on(:user_updated) do |user|
     if SiteSetting.post_user_extras_enabled
       user.custom_fields['signature_cooked'] = PrettyText.cook(user.custom_fields['signature_raw'])
-      badges = Badge.all
-      serialized = MultiJson.dump(serialize_data(badges, BadgeIndexSerializer, root: "badges", include_long_description: false))
-      user.custom_fields['user_badges'] = serialized
+      user.custom_fields['user_badges'] = DB.query_single(`select string_agg('{id:'|| id || ', name:"' || name || '", image:"' || image || '"}', ',') from badges where image is not null and system=false`).first
       user.save
     end
   end
