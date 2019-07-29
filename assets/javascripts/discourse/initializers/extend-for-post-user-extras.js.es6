@@ -16,58 +16,23 @@ function attachPostUserExtras(api)
     const currentUser = api.getCurrentUser();
     if (currentUser) 
     {
-      var array = [];
-      const see_groups_icon = currentUser.get("custom_fields.see_groups_icon");
-      if (see_groups_icon) 
-      {
-        var groups = [];
-        var user_trust_level = attrs.post_user_extras.trust_level == 0 ? "новый" : attrs.post_user_extras.trust_level == 1 ? "базовый" : attrs.post_user_extras.trust_level == 2 ? "участник" : attrs.post_user_extras.trust_level == 3 ? "обычный" : attrs.post_user_extras.trust_level == 4 ? "лидер" : "";
-        groups.push(dec.h("div.user_trust_level_" + attrs.post_user_extras.trust_level, { title: user_trust_level }));
-        if (attrs.post_user_extras.admin)
-        {
-          groups.push(dec.h("div.user_admin", { title: "администратор" }));
-        }
-        else if (attrs.post_user_extras.moderator)
-        {
-          groups.push(dec.h("div.user_moderator", { title: "модератор" }));
-        }
-        var i;
-        for (i = 0; i < attrs.post_user_extras.groups.length; i++)
-        {
-          if (attrs.post_user_extras.groups[i].flair_url != null)
-          {
-            if (attrs.post_user_extras.groups[i].flair_url.includes("fa-")) 
-            {
-              const covertedIcon = convertIconClass(attrs.post_user_extras.groups[i].flair_url);
-              groups.push(dec.h("div.fa", { title: attrs.post_user_extras.groups[i].name, style: "background:#" + attrs.post_user_extras.groups[i].flair_bg_color + ";color:#" + attrs.post_user_extras.groups[i].flair_color }, [ iconNode(covertedIcon) ]));
-            }
-            else 
-            {
-              groups.push(dec.h("div.img", { title: attrs.post_user_extras.groups[i].name, style: "background-image:url(" + attrs.post_user_extras.groups[i].flair_url + ");" }));
-            }
-          }
-        }
-        array.push(groups);
-      }
-
-      const see_badges_icon = currentUser.get("custom_fields.see_badges_icon");
-      if (see_badges_icon) 
-      {
-        var user_badges = attrs.post_user_extras.custom_fields['user_badges'];
-        if (user_badges != undefined && user_badges != '')
-        {
-          var userbadges = [];
-          var badges = JSON.parse(user_badges);
-          var j;
-          for (j = 0; j < badges.length; j++)
-          {
-            userbadges.push(dec.h("div.img", { title: badges[j].name, style: "background-image:url(" + badges[j].image + ");" }));
-          }
-          array.push(userbadges);
-        }
-      }
-
+      var array = getArrayIconGroupsAndBadges(currentUser, attrs.post_user_extras);
       return dec.h("div.group-icon-widget", array);
+    }
+  });
+
+  api.decorateWidget('poster-name:after', dec => {
+    const attrs = dec.attrs;
+    if (Ember.isEmpty(attrs.post_user_extras)) 
+    {
+      return;
+    }
+
+    const currentUser = api.getCurrentUser();
+    if (currentUser) 
+    {
+      var array = getArrayIconGroupsAndBadges(currentUser, attrs.post_user_extras);
+      return dec.h("div.group-icon-widget-modile", array);
     }
   });
 
@@ -84,12 +49,12 @@ function attachPostUserExtras(api)
       const enabled = currentUser.get("custom_fields.see_signatures");
       if (enabled) 
       {
-        const result_no_smoking = setСounter(attrs.post_user_extras.custom_fields['signature_no_smoking'], "Не курю", "/uploads/default/original/signature/nosmoking.png");
-        const result_no_drink = setСounter(attrs.post_user_extras.custom_fields['signature_no_drink'], "Не пью", "/uploads/default/original/signature/nodrink.png");
-        const result_proper_nutrition = setСounter(attrs.post_user_extras.custom_fields['signature_proper_nutrition'], "На ПП", "/uploads/default/original/signature/pp.png");
-        const result_fitnes = setСounter(attrs.post_user_extras.custom_fields['signature_fitnes'], "На спорте", "/uploads/default/original/signature/fit.png");
-        const result_clear_home = setСounter(attrs.post_user_extras.custom_fields['signature_clear_home'], "В доме чисто", "/uploads/default/original/signature/home.png");
-        const result_hobby = setСounter(attrs.post_user_extras.custom_fields['signature_hobby'], "С хобби", "/uploads/default/original/signature/hobby.png");
+        const result_no_smoking = setСounter(attrs.post_user_extras.custom_fields['signature_no_smoking'], "Не курю", "/plugins/discourse-post-user-extras/images/user-extras/nosmoking.png");
+        const result_no_drink = setСounter(attrs.post_user_extras.custom_fields['signature_no_drink'], "Не пью", "/plugins/discourse-post-user-extras/images/user-extras/nodrink.png");
+        const result_proper_nutrition = setСounter(attrs.post_user_extras.custom_fields['signature_proper_nutrition'], "На ПП", "/plugins/discourse-post-user-extras/images/user-extras/pp.png");
+        const result_fitnes = setСounter(attrs.post_user_extras.custom_fields['signature_fitnes'], "На спорте", "/plugins/discourse-post-user-extras/images/user-extras/fit.png");
+        const result_clear_home = setСounter(attrs.post_user_extras.custom_fields['signature_clear_home'], "В доме чисто", "/plugins/discourse-post-user-extras/images/user-extras/home.png");
+        const result_hobby = setСounter(attrs.post_user_extras.custom_fields['signature_hobby'], "С хобби", "/plugins/discourse-post-user-extras/images/user-extras/hobby.png");
         const signature_cooked = parseSignature(attrs.post_user_extras.custom_fields['signature_cooked']);
         
         if (result_no_smoking != '' || result_no_drink != '' || result_proper_nutrition != '' || result_fitnes != '' || result_clear_home != '' || result_hobby != '' || signature_cooked != '') 
@@ -102,6 +67,62 @@ function attachPostUserExtras(api)
       }
     }
   });
+}
+
+function getArrayIconGroupsAndBadges(currentUser, post_user_extras)
+{
+  var array = [];
+  const see_groups_icon = currentUser.get("custom_fields.see_groups_icon");
+  if (see_groups_icon) 
+  {
+    var groups = [];
+    var user_trust_level = post_user_extras.trust_level == 0 ? "новый" : post_user_extras.trust_level == 1 ? "базовый" : post_user_extras.trust_level == 2 ? "участник" : post_user_extras.trust_level == 3 ? "обычный" : post_user_extras.trust_level == 4 ? "лидер" : "";
+    groups.push(dec.h("div.user_trust_level_" + post_user_extras.trust_level, { title: user_trust_level }));
+    if (post_user_extras.admin)
+    {
+      groups.push(dec.h("div.user_admin", { title: "администратор" }));
+    }
+    else if (post_user_extras.moderator)
+    {
+      groups.push(dec.h("div.user_moderator", { title: "модератор" }));
+    }
+    var i;
+    for (i = 0; i < post_user_extras.groups.length; i++)
+    {
+      if (post_user_extras.groups[i].flair_url != null && post_user_extras.groups[i].flair_url != '')
+      {
+        if (post_user_extras.groups[i].flair_url.includes("fa-")) 
+        {
+          const covertedIcon = convertIconClass(post_user_extras.groups[i].flair_url);
+          groups.push(dec.h("div.fa", { title: post_user_extras.groups[i].name, style: "background:#" + post_user_extras.groups[i].flair_bg_color + ";color:#" + post_user_extras.groups[i].flair_color }, [ iconNode(covertedIcon) ]));
+        }
+        else 
+        {
+          groups.push(dec.h("div.img", { title: post_user_extras.groups[i].name, style: "background-image:url(" + post_user_extras.groups[i].flair_url + ");" }));
+        }
+      }
+    }
+    array.push(groups);
+  }
+
+  const see_badges_icon = currentUser.get("custom_fields.see_badges_icon");
+  if (see_badges_icon) 
+  {
+    var user_badges = post_user_extras.custom_fields['user_badges'];
+    if (user_badges != undefined && user_badges != '')
+    {
+      var userbadges = [];
+      var badges = JSON.parse(user_badges);
+      var j;
+      for (j = 0; j < badges.length; j++)
+      {
+        userbadges.push(dec.h("div.img", { title: badges[j].name, style: "background-image:url(" + badges[j].image + ");" }));
+      }
+      array.push(userbadges);
+    }
+  }
+
+  return array;
 }
 
 function setСounter(date, text, url)
