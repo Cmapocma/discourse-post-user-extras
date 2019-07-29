@@ -57,7 +57,7 @@ function attachPostUserExtras(api)
         if (user_badges != undefined && user_badges != '')
         {
           var userbadges = [];
-          var badges = JSON.parse("[" + user_badges + "]");
+          var badges = JSON.parse(user_badges);
           var j;
           for (j = 0; j < badges.length; j++)
           {
