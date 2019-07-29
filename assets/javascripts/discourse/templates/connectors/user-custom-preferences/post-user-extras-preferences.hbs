@@ -4,7 +4,7 @@
     <div class="controls bio-composer input-xxlarge">
       <label class='checkbox-label'>
         {{input type="checkbox" checked=model.custom_fields.see_groups_icon}}
-          Видеть иконки групп под аватаром
+        Видеть иконки групп под аватаром
       </label>
     </div>
   </div>
@@ -13,7 +13,7 @@
     <div class="controls bio-composer input-xxlarge">
       <label class='checkbox-label'>
         {{input type="checkbox" checked=model.custom_fields.see_badges_icon}}
-          Видеть иконки наград под аватаром
+        Видеть иконки наград под аватаром
       </label>
     </div>
   </div>
@@ -22,7 +22,7 @@
     <div class="controls bio-composer input-xxlarge">
       <label class='checkbox-label'>
         {{input type="checkbox" checked=model.custom_fields.see_signatures}}
-          Видеть подписи пользователей под сообщениями
+        Видеть подписи пользователей под сообщениями
       </label>
     </div>
   </div>
@@ -33,11 +33,41 @@
     </div>
   </div>
   <div class="control-group signatures">
-    <label class="control-label"><img src="/plugins/discourse-post-user-extras/images/nosmoking.png" style="width: 24px;padding-right: 4px;" /> Не курю</label>
+    <label class="control-label">
+      Не курю
+    </label>
     <div class="controls">
       <label class='text-label'>
-          {{input type="text" class="input-medium" value=model.custom_fields.signature_no_smoking}}
-        </label>
+        <img src="/plugins/discourse-post-user-extras/images/nosmoking.png" style="width: 20px;padding-right: 4px;" />
+        {{input type="radio" name="nosmoking" checked=model.custom_fields.img_signature_no_smoking_1}}
+        <img src="/plugins/discourse-post-user-extras/images/cigarette.png" style="width: 20px;padding-right: 4px;" />
+        {{input type="radio" name="nosmoking" checked=model.custom_fields.img_signature_no_smoking_2}}
+        <img src="/plugins/discourse-post-user-extras/images/no-smoking.png" style="width: 20px;padding-right: 4px;" />
+        {{input type="radio" name="nosmoking" checked=model.custom_fields.img_signature_no_smoking_3}}
+        <img src="/plugins/discourse-post-user-extras/images/quit-smoking-1.png" style="width: 20px;padding-right: 4px;" />
+        {{input type="radio" name="nosmoking" checked=model.custom_fields.img_signature_no_smoking_4}}
+        <img src="/plugins/discourse-post-user-extras/images/quit-smoking.png" style="width: 20px;padding-right: 4px;" />
+        {{input type="radio" name="nosmoking" checked=model.custom_fields.img_signature_no_smoking_5}}
+        Без иконки
+        {{input type="radio" name="nosmoking" checked=model.custom_fields.img_signature_no_smoking_6}}
+      </label>
+    </div>
+    <div class="controls">
+      <label class='text-label'>
+        {{input type="text" class="input-medium" value=model.custom_fields.signature_no_smoking_text}}
+      </label>
+      <div class="desc">Свой текст у счётчика</div>
+    </div>
+    <div class="controls">
+      <label class='text-label'>
+        {{input type="text" class="input-medium" value=model.custom_fields.signature_no_smoking}}
+      </label>
+        <div class="desc">дату пишите в формате "год-месяц-день", пример: 2019-03-25</div>
+    </div>
+    <div class="controls">
+      <label class='text-label'>
+        {{input type="text" class="input-medium" value=model.custom_fields.signature_no_smoking}}
+      </label>
         <div class="desc">дату пишите в формате "год-месяц-день", пример: 2019-03-25</div>
     </div>
   </div>
