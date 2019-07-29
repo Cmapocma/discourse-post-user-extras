@@ -64,7 +64,7 @@ after_initialize do
       user.custom_fields['signature_cooked'] = PrettyText.cook(user.custom_fields['signature_raw'])
       badges = Badge.all
       serialized = serialize_data(badges, BadgeIndexSerializer, root: "badges", include_long_description: false)
-      user.custom_fields['user_bages'] = serialized
+      user.custom_fields['user_badges'] = serialized.to_str
       user.save
     end
   end
@@ -74,7 +74,7 @@ after_initialize do
       user = User.where(user_id: user.id)
       badges = Badge.all
       serialized = serialize_data(badges, BadgeIndexSerializer, root: "badges", include_long_description: false)
-      user.custom_fields['user_bages'] = serialized
+      user.custom_fields['user_badges'] = serialized.to_str
       user.save
     end
   end
@@ -84,7 +84,7 @@ after_initialize do
       user = User.where(user_id: user.id)
       badges = Badge.all
       serialized = serialize_data(badges, BadgeIndexSerializer, root: "badges", include_long_description: false)
-      user.custom_fields['user_bages'] = serialized
+      user.custom_fields['user_badges'] = serialized.to_str
       user.save
     end
   end
