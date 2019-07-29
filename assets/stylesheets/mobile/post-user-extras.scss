@@ -1,0 +1,24 @@
+div.group-icon-widget
+{
+    display: none;
+}
+
+div.group-icon-widget-mobile div 
+{
+    display: inline-flex; 
+    background-size: 17px 17px; 
+    width: 17px; 
+    height: 17px;
+    align-items: center;
+    justify-content: center;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+div.group-icon-widget-mobile
+{
+    overflow-x: auto;
+    order: 5;
+    max-height: 17px;
+    display: inline-block;
+}

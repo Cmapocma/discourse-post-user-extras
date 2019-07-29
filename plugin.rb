@@ -86,3 +86,5 @@ end
 
 register_asset "javascripts/discourse/templates/connectors/user-custom-preferences/post-user-extras-preferences.hbs"
 register_asset "stylesheets/common/post-user-extras.scss"
+register_asset "stylesheets/desktop/post-user-extras.scss", :desktop
+register_asset "stylesheets/mobile/post-user-extras.scss", :mobile

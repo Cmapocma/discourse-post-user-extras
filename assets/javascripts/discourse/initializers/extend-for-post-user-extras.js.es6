@@ -47,12 +47,12 @@ function attachPostUserExtras(api)
       const enabled = currentUser.get("custom_fields.see_signatures");
       if (enabled) 
       {
-        const result_no_smoking = setСounter(attrs.post_user_extras.custom_fields['signature_no_smoking'], "Не курю", "/plugins/discourse-post-user-extras/images/user-extras/nosmoking.png");
-        const result_no_drink = setСounter(attrs.post_user_extras.custom_fields['signature_no_drink'], "Не пью", "/plugins/discourse-post-user-extras/images/user-extras/nodrink.png");
-        const result_proper_nutrition = setСounter(attrs.post_user_extras.custom_fields['signature_proper_nutrition'], "На ПП", "/plugins/discourse-post-user-extras/images/user-extras/pp.png");
-        const result_fitnes = setСounter(attrs.post_user_extras.custom_fields['signature_fitnes'], "На спорте", "/plugins/discourse-post-user-extras/images/user-extras/fit.png");
-        const result_clear_home = setСounter(attrs.post_user_extras.custom_fields['signature_clear_home'], "В доме чисто", "/plugins/discourse-post-user-extras/images/user-extras/home.png");
-        const result_hobby = setСounter(attrs.post_user_extras.custom_fields['signature_hobby'], "С хобби", "/plugins/discourse-post-user-extras/images/user-extras/hobby.png");
+        const result_no_smoking = setСounter(attrs.post_user_extras.custom_fields['signature_no_smoking'], "Не курю", "/plugins/discourse-post-user-extras/images/nosmoking.png");
+        const result_no_drink = setСounter(attrs.post_user_extras.custom_fields['signature_no_drink'], "Не пью", "/plugins/discourse-post-user-extras/images/nodrink.png");
+        const result_proper_nutrition = setСounter(attrs.post_user_extras.custom_fields['signature_proper_nutrition'], "На ПП", "/plugins/discourse-post-user-extras/images/pp.png");
+        const result_fitnes = setСounter(attrs.post_user_extras.custom_fields['signature_fitnes'], "На спорте", "/plugins/discourse-post-user-extras/images/fit.png");
+        const result_clear_home = setСounter(attrs.post_user_extras.custom_fields['signature_clear_home'], "В доме чисто", "/plugins/discourse-post-user-extras/images/home.png");
+        const result_hobby = setСounter(attrs.post_user_extras.custom_fields['signature_hobby'], "С хобби", "/plugins/discourse-post-user-extras/images/hobby.png");
         const signature_cooked = parseSignature(attrs.post_user_extras.custom_fields['signature_cooked']);
         
         if (result_no_smoking != '' || result_no_drink != '' || result_proper_nutrition != '' || result_fitnes != '' || result_clear_home != '' || result_hobby != '' || signature_cooked != '') 
