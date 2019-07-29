@@ -157,9 +157,9 @@ export default
   initialize(container) 
   {
     const siteSettings = container.lookup("site-settings:main");
-    const badges = Badge.all;
     if (siteSettings.post_user_extras_enabled) 
     {
+      const badges = Badge.findAll();    
       withPluginApi("0.1", api => attachPostUserExtras(api, badges));
     }
   }
