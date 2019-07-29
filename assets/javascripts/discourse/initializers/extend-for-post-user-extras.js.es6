@@ -163,7 +163,7 @@ export default
     if (siteSettings.post_user_extras_enabled) 
     {
       var badges; 
-      $.getJSON('/badges.json', function(data) { badges = data; });
+      $.getJSON(location.protocol + "//" + location.host + '/badges.json', function(data) { badges = data; });
       withPluginApi("0.1", api => attachPostUserExtras(api, badges));
     }
   }
