@@ -53,14 +53,18 @@ function attachPostUserExtras(api)
       const see_badges_icon = currentUser.get("custom_fields.see_badges_icon");
       if (see_badges_icon) 
       {
-        var userbadges = [];
-        var badges = JSON.parse(attrs.post_user_extras.custom_fields['user_badges']);
-        var j;
-        for (j = 0; j < badges.length; j++)
+        var user_badges = attrs.post_user_extras.custom_fields['user_badges'];
+        if (user_badges != undefined && user_badges != '')
         {
-          userbadges.push(dec.h("div.img", { title: badges[j].name, style: "background-image:url(" + badges[j].image + ");" }));
+          var userbadges = [];
+          var badges = JSON.parse(user_badges);
+          var j;
+          for (j = 0; j < badges.length; j++)
+          {
+            userbadges.push(dec.h("div.img", { title: badges[j].name, style: "background-image:url(" + badges[j].image + ");" }));
+          }
+          array.push(userbadges);
         }
-        array.push(userbadges);
       }
 
       return dec.h("div.group-icon-widget", array);
