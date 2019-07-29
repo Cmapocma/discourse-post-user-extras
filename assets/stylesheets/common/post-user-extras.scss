@@ -17,3 +17,37 @@
 {
     display: inline-block;
 }
+
+div.user_trust_level_0
+{
+    background-image:url('/plugins/discourse-post-user-extras/images/baseball-cap.png');
+}
+
+div.user_trust_level_1
+{
+    background-image:url('/plugins/discourse-post-user-extras/images/star.png');
+}
+div.user_trust_level_2
+{
+    background-image:url('/plugins/discourse-post-user-extras/images/crown.png');
+}
+
+div.user_trust_level_3
+{
+    background-image:url('/plugins/discourse-post-user-extras/images/diamond.png');
+}
+
+div.user_trust_level_4
+{
+    background-image:url('/plugins/discourse-post-user-extras/images/yin-yang.png');
+}
+
+div.user_moderator
+{
+    background-image:url('/plugins/discourse-post-user-extras/images/firewall2.png');
+}
+
+div.user_admin
+{
+    background-image:url('/plugins/discourse-post-user-extras/images/firewall.png');
+}
