@@ -109,7 +109,7 @@ function getArrayIconGroupsAndBadges(currentUser, dec)
   const see_badges_icon = currentUser.get("custom_fields.see_badges_icon");
   if (see_badges_icon) 
   {
-    var user_badges = post_user_extras.custom_fields['user_badges'];
+    var user_badges = post_user_extras.user_badges;
     if (user_badges != undefined && user_badges != '')
     {
       var userbadges = [];
