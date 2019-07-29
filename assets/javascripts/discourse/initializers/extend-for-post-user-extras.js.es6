@@ -1,6 +1,7 @@
 import { withPluginApi } from "discourse/lib/plugin-api";
 import { iconNode, convertIconClass } from "discourse-common/lib/icon-library";
 import RawHtml from "discourse/widgets/raw-html";
+import Badge from "discourse/models/badge";
 
 function attachPostUserExtras(api, badges) 
 {
@@ -156,7 +157,7 @@ export default
   initialize(container) 
   {
     const siteSettings = container.lookup("site-settings:main");
-    const badges = Discourse.Badge.all;
+    const badges = Badge.all;
     if (siteSettings.post_user_extras_enabled) 
     {
       withPluginApi("0.1", api => attachPostUserExtras(api, badges));
