@@ -30,7 +30,7 @@ function attachPostUserExtras(api)
     if (currentUser) 
     {
       var array = getArrayIconGroupsAndBadges(currentUser, dec);
-      return dec.h("div.group-icon-widget-modile", array);
+      return dec.h("div.group-icon-widget-mobile", array);
     }
   });
 
