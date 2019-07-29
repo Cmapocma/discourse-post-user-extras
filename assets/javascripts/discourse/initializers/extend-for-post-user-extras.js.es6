@@ -54,10 +54,11 @@ function attachPostUserExtras(api)
       if (see_badges_icon) 
       {
         var userbadges = [];
+        var badges = JSON.parse(attrs.post_user_extras.custom_fields['user_badges']);
         var j;
-        for (j = 0; j < attrs.post_user_extras.badges.length; j++)
+        for (j = 0; j < badges.length; j++)
         {
-          userbadges.push(dec.h("div.badge.badge_" + attrs.post_user_extras.badges[j].badge_id));
+          userbadges.push(dec.h("div.img", { title: badges[j].name, style: "background-image:url(" + badges[j].image + ");" }));
         }
         array.push(userbadges);
       }
