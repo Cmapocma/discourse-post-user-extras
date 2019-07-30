@@ -48,11 +48,11 @@ function attachPostUserExtras(api)
       if (enabled) 
       {
         const result_no_smoking = setСounter(post_user_extras.signature_no_smoking, post_user_extras.signature_no_smoking_text, post_user_extras.img_signature_no_smoking);
-        const result_no_drink = setСounter(post_user_extras.signature_no_drink, "Не пью", "/plugins/discourse-post-user-extras/images/nodrink.png");
-        const result_proper_nutrition = setСounter(post_user_extras.signature_proper_nutrition, "На ПП", "/plugins/discourse-post-user-extras/images/pp.png");
-        const result_fitnes = setСounter(post_user_extras.signature_fitnes, "На спорте", "/plugins/discourse-post-user-extras/images/fit.png");
-        const result_clear_home = setСounter(post_user_extras.signature_clear_home, "В доме чисто", "/plugins/discourse-post-user-extras/images/home.png");
-        const result_hobby = setСounter(post_user_extras.signature_hobby, "С хобби", "/plugins/discourse-post-user-extras/images/hobby.png");
+        const result_no_drink = setСounter(post_user_extras.signature_no_drink, post_user_extras.signature_no_drink_text, post_user_extras.img_signature_no_drink);
+        const result_proper_nutrition = setСounter(post_user_extras.signature_proper_nutrition, post_user_extras.signature_proper_nutrition_text, post_user_extras.img_signature_proper_nutrition);
+        const result_fitnes = setСounter(post_user_extras.signature_fitnes, post_user_extras.signature_fitnes_text, post_user_extras.img_signature_fitnes);
+        const result_clear_home = setСounter(post_user_extras.signature_clear_home, post_user_extras.signature_clear_home_text, post_user_extras.img_signature_clear_home);
+        const result_hobby = setСounter(post_user_extras.signature_hobby,  post_user_extras.signature_hobby_text, post_user_extras.img_signature_hobby);
         const signature_cooked = parseSignature(post_user_extras.signature_cooked);
         
         if (result_no_smoking != '' || result_no_drink != '' || result_proper_nutrition != '' || result_fitnes != '' || result_clear_home != '' || result_hobby != '' || signature_cooked != '') 
@@ -132,8 +132,9 @@ function setСounter(date, text, url)
     var days = parseDateSignature(date);
     if (days != '')
     {
-      var img = url != '/plugins/discourse-post-user-extras/images/' ? ('<img src="' + url + '" title="' + text + '" class="emoji" alt="' + text + '" />') : '';
-      result = '<div class="signature-counter">' + img + '<font size="2"><em>' + text + ' ' + days + '.</em></font></div>';
+      text = text != undefined && text != null ? text : '';
+      var img = url != undefined && url != null && url.includes('/plugins/discourse-post-user-extras/images/') ? ('<img src="' + url + '" title="' + text + '" class="emoji" alt="' + text + '" />') : '';
+      result = '<div class="signature-counter">' + img + ' <font size="2"><em>' + text + ' ' + days + '.</em></font></div>';
     }
   }
   return result;
