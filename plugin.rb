@@ -60,8 +60,8 @@ after_initialize do
           moderator: object.user.moderator,
           user_badges: object.user.custom_fields['user_badges'],
           signature_cooked: object.user.custom_fields['signature_cooked'],
-          img_signature_no_smoking: PostUserExtraUtils.new.get_img_signature_no_smoking(object.user.custom_fields),
-          signature_no_smoking_text: PostUserExtraUtils.new.get_signature_no_smoking_text(object.user.custom_fields),
+          img_signature_no_smoking: PostUserExtraUtils.get_img_signature_no_smoking(object.user.custom_fields),
+          signature_no_smoking_text: PostUserExtraUtils.get_signature_no_smoking_text(object.user.custom_fields),
           signature_no_smoking: object.user.custom_fields['signature_no_smoking'],
           signature_no_drink: object.user.custom_fields['signature_no_drink'],
           signature_proper_nutrition: object.user.custom_fields['signature_proper_nutrition'],
@@ -112,7 +112,7 @@ register_asset "stylesheets/desktop/post-user-extras.scss", :desktop
 register_asset "stylesheets/mobile/post-user-extras.scss", :mobile
 
 class PostUserExtraUtils
-  def get_img_signature_no_smoking(custom_fields)
+  def self.get_img_signature_no_smoking(custom_fields)
     img_signature_no_smoking = ""
     if custom_fields['img_signature_no_smoking_1'] then
       img_signature_no_smoking = "/plugins/discourse-post-user-extras/images/nosmoking.png"
@@ -128,7 +128,7 @@ class PostUserExtraUtils
     return img_signature_no_smoking
   end
 
-  def get_signature_no_smoking_text(custom_fields)
+  def self.get_signature_no_smoking_text(custom_fields)
     signature_no_smoking_text = ""
     if custom_fields['signature_no_smoking_text_check'] then
       signature_no_smoking_text = custom_fields['signature_no_smoking_text']
