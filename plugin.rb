@@ -350,10 +350,8 @@ class PostUserExtraUtils
       while signature.include? "<span data-date" do
         result += signature[0, signature.index("<span data-date")]
         signature = signature[signature.index("UTC\">") + 5...signature.length - 1]
-
         indexLast = signature.index("</span>")
         date = signature[0, indexLast]
-
         result += count_days(date)
         signature = signature[indexLast + 7...signature.length - 1]
       end

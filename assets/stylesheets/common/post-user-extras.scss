@@ -13,6 +13,12 @@
     right: -8px !important; 
 }
 
+div.user-signature
+{
+    border-top:1px solid $primary;
+    padding-top:4px;
+}
+
 .signature-counter
 {
     display: inline-block;
