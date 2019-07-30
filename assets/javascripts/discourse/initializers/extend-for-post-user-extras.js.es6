@@ -124,18 +124,13 @@ function getArrayIconGroupsAndBadges(currentUser, dec)
   return array;
 }
 
-function setСounter(date, text, url)
+function setСounter(days, text, url)
 {
   var result = '';
-  if (date != undefined && date != null && date.indexOf('-') > 0)
+  if (days != undefined && days != null && days != '')
   {
-    var days = parseDateSignature(date);
-    if (days != '')
-    {
-      text = text != undefined && text != null ? text : '';
-      var img = url != undefined && url != null && url.includes('/plugins/discourse-post-user-extras/images/') ? ('<img src="' + url + '" title="' + text + '" class="emoji" alt="' + text + '" />') : '';
-      result = '<div class="signature-counter">' + img + ' <font size="2"><em>' + text + ' ' + days + '.</em></font></div>';
-    }
+    var img = url != undefined && url != null && url.includes('/plugins/discourse-post-user-extras/images/') ? ('<img src="' + url + '" title="' + text + '" class="emoji" alt="' + text + '" />') : '';
+    result = '<div class="signature-counter">' + img + ' <font size="2"><em>' + text + ' ' + days + '.</em></font></div>';
   }
   return result;
 }

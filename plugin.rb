@@ -116,22 +116,22 @@ after_initialize do
           signature_cooked: object.user.custom_fields['signature_cooked'],
           img_signature_no_smoking: PostUserExtraUtils.get_img_signature_no_smoking(object.user.custom_fields),
           signature_no_smoking_text: PostUserExtraUtils.get_signature_no_smoking_text(object.user.custom_fields),
-          signature_no_smoking: object.user.custom_fields['signature_no_smoking'],
+          signature_no_smoking: PostUserExtraUtils.count_days(object.user.custom_fields['signature_no_smoking']),
           img_signature_no_drink: PostUserExtraUtils.get_img_signature_no_drink(object.user.custom_fields),
           signature_no_drink_text: PostUserExtraUtils.get_signature_no_drink_text(object.user.custom_fields),
-          signature_no_drink: object.user.custom_fields['signature_no_drink'],
+          signature_no_drink: PostUserExtraUtils.count_days(object.user.custom_fields['signature_no_drink']),
           img_signature_proper_nutrition: PostUserExtraUtils.get_img_signature_proper_nutrition(object.user.custom_fields),
           signature_proper_nutrition_text: PostUserExtraUtils.get_signature_proper_nutrition_text(object.user.custom_fields),
-          signature_proper_nutrition: object.user.custom_fields['signature_proper_nutrition'],
+          signature_proper_nutrition: PostUserExtraUtils.count_days(object.user.custom_fields['signature_proper_nutrition']),
           img_signature_fitnes: PostUserExtraUtils.get_img_signature_fitnes(object.user.custom_fields),
           signature_fitnes_text: PostUserExtraUtils.get_signature_fitnes_text(object.user.custom_fields),
-          signature_fitnes: object.user.custom_fields['signature_fitnes'],
+          signature_fitnes: PostUserExtraUtils.count_days(object.user.custom_fields['signature_fitnes']),
           img_signature_clear_home: PostUserExtraUtils.get_img_signature_clear_home(object.user.custom_fields),
           signature_clear_home_text: PostUserExtraUtils.get_signature_clear_home_text(object.user.custom_fields),
-          signature_clear_home: object.user.custom_fields['signature_clear_home'],
+          signature_clear_home: PostUserExtraUtils.count_days(object.user.custom_fields['signature_clear_home']),
           img_signature_hobby: PostUserExtraUtils.get_img_signature_hobby(object.user.custom_fields),
           signature_hobby_text: PostUserExtraUtils.get_signature_hobby_text(object.user.custom_fields),
-          signature_hobby: object.user.custom_fields['signature_hobby']
+          signature_hobby: PostUserExtraUtils.count_days(object.user.custom_fields['signature_hobby'])
         }
       end
     }
@@ -315,4 +315,25 @@ class PostUserExtraUtils
     end
     return signature_hobby_text
   end
+
+  def self.count_days(date)
+    result = ""
+    past = DateTime.parse(date)
+    if past != nil then
+      now = DateTime.new
+      diff = now - past 
+      time = diff.round
+      sec = time % 60
+      time /= 60
+      mins = time % 60
+      time /= 60
+      hrs = time % 24
+      time /= 24
+      days = "" + time
+      last = days[days.length - 1];
+      last2 = days.length > 1 ? days[days.length - 2, 2] : days;
+      result = days + ' ' + (last == '1' && last2 != '11' ? 'день' : (last == '2' || last == '3' || last == '4') && last2 != '12' && last2 != '13' && last2 != '14' ? 'дня' : 'дней');
+    end
+    return result
+   end
 end
