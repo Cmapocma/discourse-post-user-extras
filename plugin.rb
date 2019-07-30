@@ -48,6 +48,29 @@ after_initialize do
 
   register_editable_user_custom_field [:see_groups_icon, :see_badges_icon, :see_signatures, :signature_raw, :img_signature_no_smoking_1, :img_signature_no_smoking_2, :img_signature_no_smoking_3, :img_signature_no_smoking_4, :img_signature_no_smoking_5, :signature_no_smoking_text_check, :signature_no_smoking_text, :signature_no_smoking, :signature_no_drink, :signature_proper_nutrition, :signature_fitnes, :signature_clear_home, :signature_hobby]
 
+  img_signature_no_smoking = ""
+  signature_no_smoking_text = ""
+
+  if object.user != nil then
+    if object.user.custom_fields['img_signature_no_smoking_1'] then
+      img_signature_no_smoking = "/plugins/discourse-post-user-extras/images/nosmoking.png"
+    elsif object.user.custom_fields['img_signature_no_smoking_2'] then
+      img_signature_no_smoking = "/plugins/discourse-post-user-extras/images/cigarette.png"
+    elsif object.user.custom_fields['img_signature_no_smoking_3'] then
+      img_signature_no_smoking = "/plugins/discourse-post-user-extras/images/no-smoking.png"
+    elsif object.user.custom_fields['img_signature_no_smoking_4'] then
+      img_signature_no_smoking = "/plugins/discourse-post-user-extras/images/quit-smoking-1.png"
+    elsif object.user.custom_fields['img_signature_no_smoking_5'] then
+      img_signature_no_smoking = "/plugins/discourse-post-user-extras/images/quit-smoking.png"
+    end
+
+    if object.user.custom_fields['signature_no_smoking_text_check'] then
+      signature_no_smoking_text = object.user.custom_fields['signature_no_smoking_text']
+    else 
+      signature_no_smoking_text = "Не курю"
+    end
+  end
+
   if SiteSetting.post_user_extras_enabled then
     add_to_serializer(:post, :post_user_extras, false) {
       if object.user == nil then
@@ -60,13 +83,8 @@ after_initialize do
           moderator: object.user.moderator,
           user_badges: object.user.custom_fields['user_badges'],
           signature_cooked: object.user.custom_fields['signature_cooked'],
-          img_signature_no_smoking_1: object.user.custom_fields['img_signature_no_smoking_1'],
-          img_signature_no_smoking_2: object.user.custom_fields['img_signature_no_smoking_2'],
-          img_signature_no_smoking_3: object.user.custom_fields['img_signature_no_smoking_3'],
-          img_signature_no_smoking_4: object.user.custom_fields['img_signature_no_smoking_4'],
-          img_signature_no_smoking_5: object.user.custom_fields['img_signature_no_smoking_5'],
-          signature_no_smoking_text_check: object.user.custom_fields['signature_no_smoking_text_check'],
-          signature_no_smoking_text: object.user.custom_fields['signature_no_smoking_text'],
+          img_signature_no_smoking: img_signature_no_smoking,
+          signature_no_smoking_text: signature_no_smoking_text,
           signature_no_smoking: object.user.custom_fields['signature_no_smoking'],
           signature_no_drink: object.user.custom_fields['signature_no_drink'],
           signature_proper_nutrition: object.user.custom_fields['signature_proper_nutrition'],

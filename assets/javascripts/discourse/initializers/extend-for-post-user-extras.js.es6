@@ -47,9 +47,7 @@ function attachPostUserExtras(api)
       const enabled = currentUser.get("custom_fields.see_signatures");
       if (enabled) 
       {
-        var signature_no_smoking_text = post_user_extras.signature_no_smoking_text_check ? post_user_extras.signature_no_smoking_text : "Не курю";
-        var img_signature_no_smoking = post_user_extras.img_signature_no_smoking_1 ? "nosmoking.png" : post_user_extras.img_signature_no_smoking_2 ? "cigarette.png" : post_user_extras.img_signature_no_smoking_3 ? "no-smoking.png" : post_user_extras.img_signature_no_smoking_4 ? "quit-smoking-1.png" : post_user_extras.img_signature_no_smoking_5 ? "quit-smoking.png" : "";
-        const result_no_smoking = setСounter(post_user_extras.signature_no_smoking, signature_no_smoking_text, '/plugins/discourse-post-user-extras/images/' + img_signature_no_smoking);
+        const result_no_smoking = setСounter(post_user_extras.signature_no_smoking, post_user_extras.signature_no_smoking_text, post_user_extras.img_signature_no_smoking);
         const result_no_drink = setСounter(post_user_extras.signature_no_drink, "Не пью", "/plugins/discourse-post-user-extras/images/nodrink.png");
         const result_proper_nutrition = setСounter(post_user_extras.signature_proper_nutrition, "На ПП", "/plugins/discourse-post-user-extras/images/pp.png");
         const result_fitnes = setСounter(post_user_extras.signature_fitnes, "На спорте", "/plugins/discourse-post-user-extras/images/fit.png");
@@ -77,7 +75,7 @@ function getArrayIconGroupsAndBadges(currentUser, dec)
   if (see_groups_icon) 
   {
     var groups = [];
-    var user_trust_level = post_user_extras.trust_level == 0 ? "новичек" : post_user_extras.trust_level == 1 ? "участник" : post_user_extras.trust_level == 2 ? "участник" : post_user_extras.trust_level == 3 ? "постоялец" : post_user_extras.trust_level == 4 ? "лидер" : "";
+    var user_trust_level = post_user_extras.trust_level == 0 ? "новичок" : post_user_extras.trust_level == 1 ? "участник" : post_user_extras.trust_level == 2 ? "участник" : post_user_extras.trust_level == 3 ? "постоялец" : post_user_extras.trust_level == 4 ? "лидер" : "";
     groups.push(dec.h("div.user_trust_level_" + post_user_extras.trust_level, { title: user_trust_level }));
     if (post_user_extras.admin)
     {
