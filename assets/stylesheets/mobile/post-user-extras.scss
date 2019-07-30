@@ -22,3 +22,17 @@ div.group-icon-widget-mobile
     max-height: 17px;
     display: inline-block;
 }
+
+.d-editor-button-bar
+{
+    overflow-x: auto;
+}
+.select-kit-body
+{ 
+    left: unset !important;
+    right: 0px !important;  
+    bottom: 50px !important; 
+    top: auto !important; 
+    position: fixed !important;
+    width:250px !important;
+}
