@@ -53,7 +53,7 @@ function attachPostUserExtras(api)
         const result_fitnes = setСounter(post_user_extras.signature_fitnes, post_user_extras.signature_fitnes_text, post_user_extras.img_signature_fitnes);
         const result_clear_home = setСounter(post_user_extras.signature_clear_home, post_user_extras.signature_clear_home_text, post_user_extras.img_signature_clear_home);
         const result_hobby = setСounter(post_user_extras.signature_hobby,  post_user_extras.signature_hobby_text, post_user_extras.img_signature_hobby);
-        const signature_cooked = parseSignature(post_user_extras.signature_cooked);
+        const signature_cooked = post_user_extras.signature_cooked;
         
         if (result_no_smoking != '' || result_no_drink != '' || result_proper_nutrition != '' || result_fitnes != '' || result_clear_home != '' || result_hobby != '' || signature_cooked != '') 
         {
@@ -131,42 +131,6 @@ function setСounter(days, text, url)
     text = text != undefined && text != null ? text : '';
     var img = url != undefined && url != null && url.includes('/plugins/discourse-post-user-extras/images/') ? ('<img src="' + url + '" title="' + text + '" class="emoji" alt="' + text + '" />') : '';
     result = '<div class="signature-counter">' + img + ' <font size="2"><em>' + text + ' ' + days + '.</em></font></div>';
-  }
-  return result;
-}
-
-function parseSignature(item)
-{
-  var result='';
-  if (item != undefined && item != null)
-  {
-    while (item.includes('<span data-date'))
-    {
-      result += item.substring(0, item.indexOf('<span data-date'));
-      item = item.substring(item.indexOf('UTC">') + 5);
-
-      var indexLast = item.indexOf('</span>');
-      var date = item.substring(0, indexLast);
-
-      result += parseDateSignature(date);
-      item = item.substring(indexLast + 7);
-    }
-    result += item;
-  }
-  return result;
-}
-
-function parseDateSignature(date)
-{ 
-  var result = '';
-  var start = new Date(date);
-  if(!isNaN(start)){
-    var end = new Date();
-    var diff = new Date(end - start);
-    var days = (Math.floor(diff/1000/60/60/24)).toString();
-    var last = days.substr(days.length - 1);
-    var last2 = days.length > 1 ? days.substr(days.length - 2) : days;
-    result = days + ' ' + (last == '1' && last2 != '11' ? 'день' : (last == '2' || last == '3' || last == '4') && last2 != '12' && last2 != '13' && last2 != '14' ? 'дня' : 'дней');
   }
   return result;
 }

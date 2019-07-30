@@ -114,7 +114,7 @@ after_initialize do
           admin: object.user.admin,
           moderator: object.user.moderator,
           user_badges: object.user.custom_fields['user_badges'],
-          signature_cooked: object.user.custom_fields['signature_cooked'],
+          signature_cooked: PostUserExtraUtils.parse_signature(object.user.custom_fields['signature_cooked']),
           img_signature_no_smoking: PostUserExtraUtils.get_img_signature_no_smoking(object.user.custom_fields),
           signature_no_smoking_text: PostUserExtraUtils.get_signature_no_smoking_text(object.user.custom_fields),
           signature_no_smoking: PostUserExtraUtils.count_days(object.user.custom_fields['signature_no_smoking']),
@@ -338,9 +338,27 @@ class PostUserExtraUtils
       end
     end
     return result
-   end
+  end
 
-   def self.get_trust_level_title(trust_level)
+  def self.get_trust_level_title(trust_level)
     return trust_level == 0 ? "новичок" : trust_level == 1 ? "участник" : trust_level == 2 ? "участник" : trust_level == 3 ? "постоялец" : trust_level == 4 ? "лидер" : "";
+  end
+
+  def self.parse_signature(signature)
+    result = "";
+    if signature != nil then
+      while signature.include? "<span data-date" do
+        result += signature[0, signature.index("<span data-date")]
+        signature = signature[signature.index("UTC\">") + 5...signature.length - 1]
+
+        indexLast = signature.index("</span>")
+        date = signature[0, indexLast]
+
+        result += count_days(date)
+        signature = [indexLast + 7...signature.length - 1]
+      end
+      result += signature
+    end
+    return result
   end
 end
