@@ -106,7 +106,7 @@ after_initialize do
   end
 
   DiscourseEvent.on(:user_updated) do |user|
-    if SiteSetting.post_user_extras_enabled
+    if SiteSetting.post_user_extras_enabled then
       user.custom_fields['signature_cooked'] = PrettyText.cook(user.custom_fields['signature_raw'])
       user.custom_fields['user_badges'] = DB.query_single("select '[' || string_agg('{\"id\":\"'|| b.id || '\", \"name\":\"' || b.name || '\", \"image\":\"' || b.image || '\"}', ',') || ']' from user_badges ub inner join badges b on b.id=ub.badge_id where ub.user_id=#{user.id} and b.enabled=true and b.image is not null and system=false").first
       user.save
@@ -114,7 +114,7 @@ after_initialize do
   end
 
   DiscourseEvent.on(:user_badge_granted) do |badge_id, user_id|
-    if SiteSetting.post_user_extras_enabled
+    if SiteSetting.post_user_extras_enabled then
       user = User.where(id: user_id).first
       user.custom_fields['user_badges'] = DB.query_single("select '[' || string_agg('{\"id\":\"'|| b.id || '\", \"name\":\"' || b.name || '\", \"image\":\"' || b.image || '\"}', ',') || ']' from user_badges ub inner join badges b on b.id=ub.badge_id where ub.user_id=#{user_id} and b.enabled=true and b.image is not null and system=false").first
       user.save
@@ -122,13 +122,12 @@ after_initialize do
   end
 
   DiscourseEvent.on(:user_badge_removed) do |badge_id, user_id|
-    if SiteSetting.post_user_extras_enabled
+    if SiteSetting.post_user_extras_enabled then
       user = User.where(id: user_id).first
       user.custom_fields['user_badges'] = DB.query_single("select '[' || string_agg('{\"id\":\"'|| b.id || '\", \"name\":\"' || b.name || '\", \"image\":\"' || b.image || '\"}', ',') || ']' from user_badges ub inner join badges b on b.id=ub.badge_id where ub.user_id=#{user_id} and b.enabled=true and b.image is not null and system=false").first
       user.save
     end
   end
-
 end
 
 register_asset "javascripts/discourse/templates/connectors/user-custom-preferences/post-user-extras-preferences.hbs"
