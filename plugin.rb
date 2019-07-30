@@ -330,7 +330,7 @@ class PostUserExtraUtils
         time /= 60
         hrs = time % 24
         time /= 24
-        days = time.to_str
+        days = time.to_s
         last = days[days.length - 1];
         last2 = days.length > 1 ? days[days.length - 2, 2] : days;
         result = days + ' ' + (last == '1' && last2 != '11' ? 'день' : (last == '2' || last == '3' || last == '4') && last2 != '12' && last2 != '13' && last2 != '14' ? 'дня' : 'дней');
