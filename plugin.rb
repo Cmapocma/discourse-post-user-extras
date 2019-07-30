@@ -110,6 +110,7 @@ after_initialize do
         {
           groups: object.user.groups,
           trust_level: object.user.trust_level,
+          trust_level_title: PostUserExtraUtils.get_trust_level_title(object.user.trust_level),
           admin: object.user.admin,
           moderator: object.user.moderator,
           user_badges: object.user.custom_fields['user_badges'],
@@ -197,7 +198,7 @@ class PostUserExtraUtils
   def self.get_signature_no_smoking_text(custom_fields)
     signature_no_smoking_text = ""
     if custom_fields['signature_no_smoking_text_check'] then
-      signature_no_smoking_text = custom_fields['signature_no_smoking_text']
+      signature_no_smoking_text = custom_fields['signature_no_smoking_text'] != nil ? custom_fields['signature_no_smoking_text'] : ""
     else 
       signature_no_smoking_text = "Не курю"
     end
@@ -221,7 +222,7 @@ class PostUserExtraUtils
   def self.get_signature_no_drink_text(custom_fields)
     signature_no_drink_text = ""
     if custom_fields['signature_no_drink_text_check'] then
-      signature_no_drink_text = custom_fields['signature_no_drink_text']
+      signature_no_drink_text = custom_fields['signature_no_drink_text'] != nil ? custom_fields['signature_no_drink_text'] : ""
     else 
       signature_no_drink_text = "Не пью"
     end
@@ -243,7 +244,7 @@ class PostUserExtraUtils
   def self.get_signature_proper_nutrition_text(custom_fields)
     signature_proper_nutrition_text = ""
     if custom_fields['signature_proper_nutrition_text_check'] then
-      signature_proper_nutrition_text = custom_fields['signature_proper_nutrition_text']
+      signature_proper_nutrition_text = custom_fields['signature_proper_nutrition_text'] != nil ? custom_fields['signature_proper_nutrition_text'] : ""
     else 
       signature_proper_nutrition_text = "На ПП"
     end
@@ -263,7 +264,7 @@ class PostUserExtraUtils
   def self.get_signature_fitnes_text(custom_fields)
     signature_fitnes_text = ""
     if custom_fields['signature_fitnes_text_check'] then
-      signature_fitnes_text = custom_fields['signature_fitnes_text']
+      signature_fitnes_text = custom_fields['signature_fitnes_text'] != nil ? custom_fields['signature_fitnes_text'] : ""
     else 
       signature_fitnes_text = "На спорте"
     end
@@ -285,7 +286,7 @@ class PostUserExtraUtils
   def self.get_signature_clear_home_text(custom_fields)
     signature_clear_home_text = ""
     if custom_fields['signature_clear_home_text_check'] then
-      signature_clear_home_text = custom_fields['signature_clear_home_text']
+      signature_clear_home_text = custom_fields['signature_clear_home_text'] != nil ? custom_fields['signature_clear_home_text'] : ""
     else 
       signature_clear_home_text = "В доме чисто"
     end
@@ -309,7 +310,7 @@ class PostUserExtraUtils
   def self.get_signature_hobby_text(custom_fields)
     signature_hobby_text = ""
     if custom_fields['signature_hobby_text_check'] then
-      signature_hobby_text = custom_fields['signature_hobby_text']
+      signature_hobby_text = custom_fields['signature_hobby_text'] != nil ? custom_fields['signature_hobby_text'] : ""
     else 
       signature_hobby_text = "Не курю"
     end
@@ -338,4 +339,8 @@ class PostUserExtraUtils
     end
     return result
    end
+
+   def self.get_trust_level_title(trust_level)
+    return trust_level == 0 ? "новичок" : trust_level == 1 ? "участник" : trust_level == 2 ? "участник" : trust_level == 3 ? "постоялец" : trust_level == 4 ? "лидер" : "";
+  end
 end

@@ -75,8 +75,7 @@ function getArrayIconGroupsAndBadges(currentUser, dec)
   if (see_groups_icon) 
   {
     var groups = [];
-    var user_trust_level = post_user_extras.trust_level == 0 ? "новичок" : post_user_extras.trust_level == 1 ? "участник" : post_user_extras.trust_level == 2 ? "участник" : post_user_extras.trust_level == 3 ? "постоялец" : post_user_extras.trust_level == 4 ? "лидер" : "";
-    groups.push(dec.h("div.user_trust_level_" + post_user_extras.trust_level, { title: user_trust_level }));
+    groups.push(dec.h("div.user_trust_level_" + post_user_extras.trust_level, { title: post_user_extras.trust_level_title }));
     if (post_user_extras.admin)
     {
       groups.push(dec.h("div.user_admin", { title: "администратор" }));
@@ -129,6 +128,7 @@ function setСounter(days, text, url)
   var result = '';
   if (days != undefined && days != null && days != '')
   {
+    text = text != undefined && text != null ? text : '';
     var img = url != undefined && url != null && url.includes('/plugins/discourse-post-user-extras/images/') ? ('<img src="' + url + '" title="' + text + '" class="emoji" alt="' + text + '" />') : '';
     result = '<div class="signature-counter">' + img + ' <font size="2"><em>' + text + ' ' + days + '.</em></font></div>';
   }
