@@ -32,7 +32,7 @@ function attachPostUserExtras(api)
 
   api.decorateWidget("post-contents:after-cooked", dec => {
     const post_user_extras = dec.attrs.post_user_extras;
-    if (Ember.isEmpty(post_user_extras)) 
+    if (!Ember.isEmpty(post_user_extras)) 
     {
       const currentUser = api.getCurrentUser();
       if (currentUser) 
