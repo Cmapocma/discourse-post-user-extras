@@ -129,8 +129,8 @@ end
 
 def get_signature_no_smoking_text(custom_fields) do
   signature_no_smoking_text = ""
-  if object.user.custom_fields['signature_no_smoking_text_check'] then
-    signature_no_smoking_text = object.user.custom_fields['signature_no_smoking_text']
+  if custom_fields['signature_no_smoking_text_check'] then
+    signature_no_smoking_text = custom_fields['signature_no_smoking_text']
   else 
     signature_no_smoking_text = "Не курю"
   end
