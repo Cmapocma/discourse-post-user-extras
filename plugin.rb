@@ -355,7 +355,7 @@ class PostUserExtraUtils
         date = signature[0, indexLast]
 
         result += count_days(date)
-        signature = [indexLast + 7...signature.length - 1]
+        signature = signature[indexLast + 7...signature.length - 1]
       end
       result += signature
     end
