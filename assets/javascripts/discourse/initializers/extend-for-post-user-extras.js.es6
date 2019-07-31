@@ -1,5 +1,5 @@
 import { withPluginApi } from "discourse/lib/plugin-api";
-import { iconNode, convertIconClass } from "discourse-common/lib/icon-library";
+//import { iconNode, convertIconClass } from "discourse-common/lib/icon-library";
 import RawHtml from "discourse/widgets/raw-html";
 
 function attachPostUserExtras(api) 
