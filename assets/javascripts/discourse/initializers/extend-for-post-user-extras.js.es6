@@ -82,12 +82,12 @@ function getArrayIconGroupsAndBadges(currentUser, dec)
       {
         if (post_user_extras.groups[i].flair_url.includes("fa-")) 
         {
-          const covertedIcon = convertIconClass(post_user_extras.groups[i].flair_url);
-          groups.push(dec.h("div.fa", { title: post_user_extras.groups[i].name, style: "background:#" + post_user_extras.groups[i].flair_bg_color + ";color:#" + post_user_extras.groups[i].flair_color }, [ iconNode(covertedIcon) ]));
+          //const covertedIcon = convertIconClass(post_user_extras.groups[i].flair_url);
+          //groups.push(dec.h("div.fa", { title: post_user_extras.groups[i].name, style: "background:#" + post_user_extras.groups[i].flair_bg_color + ";color:#" + post_user_extras.groups[i].flair_color }, [ iconNode(covertedIcon) ]));
         }
         else 
         {
-          groups.push(dec.h("div.img", { title: post_user_extras.groups[i].name, style: "background-image:url(" + post_user_extras.groups[i].flair_url + ");" }));
+          groups.push(dec.h("div", { title: post_user_extras.groups[i].name, style: "background-image:url(" + post_user_extras.groups[i].flair_url + ");" }));
         }
       }
     }
@@ -105,7 +105,7 @@ function getArrayIconGroupsAndBadges(currentUser, dec)
       var j;
       for (j = 0; j < badges.length; j++)
       {
-        userbadges.push(dec.h("div.img", { title: badges[j].name, style: "background-image:url(" + badges[j].image + ");" }));
+        userbadges.push(dec.h("div", { title: badges[j].name, style: "background-image:url(" + badges[j].image + ");" }));
       }
       array.push(userbadges);
     }
