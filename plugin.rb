@@ -312,7 +312,7 @@ class PostUserExtraUtils
     if custom_fields['signature_hobby_text_check'] then
       signature_hobby_text = custom_fields['signature_hobby_text'] != nil ? custom_fields['signature_hobby_text'] : ""
     else 
-      signature_hobby_text = "Не курю"
+      signature_hobby_text = "С хобби"
     end
     return signature_hobby_text
   end
@@ -341,7 +341,7 @@ class PostUserExtraUtils
   end
 
   def self.get_trust_level_title(trust_level)
-    return trust_level == 0 ? "новичок" : trust_level == 1 ? "участник" : trust_level == 2 ? "участник" : trust_level == 3 ? "постоялец" : trust_level == 4 ? "лидер" : "";
+    return trust_level == 0 ? "новичок" : trust_level == 1 ? "участник" : trust_level == 2 ? "участник +" : trust_level == 3 ? "постоялец" : trust_level == 4 ? "лидер" : "";
   end
 
   #def self.parse_signature(signature)
