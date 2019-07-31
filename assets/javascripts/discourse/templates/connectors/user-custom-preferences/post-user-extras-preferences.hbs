@@ -38,18 +38,21 @@
     </label>
     <div class="controls">
       <label class='text-label'>
-        {{input type="checkbox" checked=model.custom_fields.img_signature_no_smoking_1}}
+        <input type="radio" name="img_signature_no_smoking" {{#if model.custom_fields.img_signature_no_smoking=="/plugins/discourse-post-user-extras/images/nosmoking.png"}}checked='checked'{{/if}} onclick="if ($(this).is(':checked')) $('input.img_signature_no_smoking').val('/plugins/discourse-post-user-extras/images/nosmoking.png');" />
         <img src="/plugins/discourse-post-user-extras/images/nosmoking.png" style="width: 24px;padding-right: 4px;" />
-        {{input type="checkbox" checked=model.custom_fields.img_signature_no_smoking_2}}
+        <input type="radio" name="img_signature_no_smoking" {{#if model.custom_fields.img_signature_no_smoking=="/plugins/discourse-post-user-extras/images/cigarette.png"}}checked='checked'{{/if}} onclick="if ($(this).is(':checked')) $('input.img_signature_no_smoking').val('/plugins/discourse-post-user-extras/images/cigarette.png');" />
         <img src="/plugins/discourse-post-user-extras/images/cigarette.png" style="width: 24px;padding-right: 4px;" />
-        {{input type="checkbox" checked=model.custom_fields.img_signature_no_smoking_3}}
+        <input type="radio" name="img_signature_no_smoking" {{#if model.custom_fields.img_signature_no_smoking=="/plugins/discourse-post-user-extras/images/no-smoking.png"}}checked='checked'{{/if}} onclick="if ($(this).is(':checked')) $('input.img_signature_no_smoking').val('/plugins/discourse-post-user-extras/images/no-smoking.png');" />
         <img src="/plugins/discourse-post-user-extras/images/no-smoking.png" style="width: 24px;padding-right: 4px;" />
-        {{input type="checkbox" checked=model.custom_fields.img_signature_no_smoking_4}}
+        <input type="radio" name="img_signature_no_smoking" {{#if model.custom_fields.img_signature_no_smoking=="/plugins/discourse-post-user-extras/images/quit-smoking-1.png"}}checked='checked'{{/if}} onclick="if ($(this).is(':checked')) $('input.img_signature_no_smoking').val('/plugins/discourse-post-user-extras/images/quit-smoking-1.png');" />
         <img src="/plugins/discourse-post-user-extras/images/quit-smoking-1.png" style="width: 24px;padding-right: 4px;" />
-        {{input type="checkbox" checked=model.custom_fields.img_signature_no_smoking_5}}
+        <input type="radio" name="img_signature_no_smoking" {{#if model.custom_fields.img_signature_no_smoking=="/plugins/discourse-post-user-extras/images/quit-smoking.png"}}checked='checked'{{/if}} onclick="if ($(this).is(':checked')) $('input.img_signature_no_smoking').val('/plugins/discourse-post-user-extras/images/quit-smoking.png');" />
         <img src="/plugins/discourse-post-user-extras/images/quit-smoking.png" style="width: 24px;padding-right: 4px;" />
-        {{input type="checkbox" checked=model.custom_fields.img_signature_no_smoking_6}}
+        <input type="radio" name="img_signature_no_smoking" {{#if model.custom_fields.img_signature_no_smoking=="/plugins/discourse-post-user-extras/images/no_smoking3.png"}}checked='checked'{{/if}} onclick="if ($(this).is(':checked')) $('input.img_signature_no_smoking').val('/plugins/discourse-post-user-extras/images/no_smoking3.png');" />
         <img src="/plugins/discourse-post-user-extras/images/no_smoking3.png" style="width: 24px;padding-right: 4px;" />
+        <input type="radio" name="img_signature_no_smoking" {{#if model.custom_fields.img_signature_no_smoking==""}}checked='checked'{{/if}} onclick="if ($(this).is(':checked')) $('input.img_signature_no_smoking').val('');'" />
+        Без иконки
+        {{input type="hidden" class="img_signature_no_smoking" value=model.custom_fields.img_signature_no_smoking}}
       </label>
       <div class="desc"><i>будет использовано первое выбранное изображение</i></div>
     </div>

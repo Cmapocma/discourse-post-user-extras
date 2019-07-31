@@ -12,12 +12,7 @@ DiscoursePluginRegistry.serialized_current_user_fields << "see_groups_icon"
 DiscoursePluginRegistry.serialized_current_user_fields << "see_badges_icon"
 DiscoursePluginRegistry.serialized_current_user_fields << "see_signatures"
 DiscoursePluginRegistry.serialized_current_user_fields << "signature_raw"
-DiscoursePluginRegistry.serialized_current_user_fields << "img_signature_no_smoking_1"
-DiscoursePluginRegistry.serialized_current_user_fields << "img_signature_no_smoking_2"
-DiscoursePluginRegistry.serialized_current_user_fields << "img_signature_no_smoking_3"
-DiscoursePluginRegistry.serialized_current_user_fields << "img_signature_no_smoking_4"
-DiscoursePluginRegistry.serialized_current_user_fields << "img_signature_no_smoking_5"
-DiscoursePluginRegistry.serialized_current_user_fields << "img_signature_no_smoking_6"
+DiscoursePluginRegistry.serialized_current_user_fields << "img_signature_no_smoking"
 DiscoursePluginRegistry.serialized_current_user_fields << "signature_no_smoking_text_check"
 DiscoursePluginRegistry.serialized_current_user_fields << "signature_no_smoking_text"
 DiscoursePluginRegistry.serialized_current_user_fields << "signature_no_smoking"
@@ -59,12 +54,7 @@ after_initialize do
   User.register_custom_field_type('see_badges_icon', :boolean)
   User.register_custom_field_type('see_signatures', :boolean)
   User.register_custom_field_type('signature_raw', :text)
-  User.register_custom_field_type('img_signature_no_smoking_1', :boolean)
-  User.register_custom_field_type('img_signature_no_smoking_2', :boolean)
-  User.register_custom_field_type('img_signature_no_smoking_3', :boolean)
-  User.register_custom_field_type('img_signature_no_smoking_4', :boolean)
-  User.register_custom_field_type('img_signature_no_smoking_5', :boolean)
-  User.register_custom_field_type('img_signature_no_smoking_6', :boolean)
+  User.register_custom_field_type('img_signature_no_smoking', :text)
   User.register_custom_field_type('signature_no_smoking_text_check', :boolean)
   User.register_custom_field_type('signature_no_smoking_text', :text)
   User.register_custom_field_type('signature_no_smoking', :text)
@@ -100,7 +90,7 @@ after_initialize do
   User.register_custom_field_type('signature_hobby_text', :text)
   User.register_custom_field_type('signature_hobby', :text)
 
-  register_editable_user_custom_field [:see_groups_icon, :see_badges_icon, :see_signatures, :signature_raw, :img_signature_no_smoking_1, :img_signature_no_smoking_2, :img_signature_no_smoking_3, :img_signature_no_smoking_4, :img_signature_no_smoking_5, :img_signature_no_smoking_6, :signature_no_smoking_text_check, :signature_no_smoking_text, :signature_no_smoking, :img_signature_no_drink_1, :img_signature_no_drink_2, :img_signature_no_drink_3, :img_signature_no_drink_4, :signature_no_drink_text_check, :signature_no_drink_text, :signature_no_drink, :img_signature_proper_nutrition_1, :img_signature_proper_nutrition_2, :img_signature_proper_nutrition_3, :signature_proper_nutrition_text_check, :signature_proper_nutrition_text, :signature_proper_nutrition, :img_signature_fitnes_1, :img_signature_fitnes_2, :signature_fitnes_text_check, :signature_fitnes_text, :signature_fitnes, :img_signature_clear_home_1, :img_signature_clear_home_2, :img_signature_clear_home_3, :signature_clear_home_text_check, :signature_clear_home_text, :signature_clear_home, :img_signature_hobby_1, :img_signature_hobby_2, :img_signature_hobby_3, :img_signature_hobby_4, :signature_hobby_text_check, :signature_hobby_text, :signature_hobby]
+  register_editable_user_custom_field [:see_groups_icon, :see_badges_icon, :see_signatures, :signature_raw, :img_signature_no_smoking, :signature_no_smoking_text_check, :signature_no_smoking_text, :signature_no_smoking, :img_signature_no_drink_1, :img_signature_no_drink_2, :img_signature_no_drink_3, :img_signature_no_drink_4, :signature_no_drink_text_check, :signature_no_drink_text, :signature_no_drink, :img_signature_proper_nutrition_1, :img_signature_proper_nutrition_2, :img_signature_proper_nutrition_3, :signature_proper_nutrition_text_check, :signature_proper_nutrition_text, :signature_proper_nutrition, :img_signature_fitnes_1, :img_signature_fitnes_2, :signature_fitnes_text_check, :signature_fitnes_text, :signature_fitnes, :img_signature_clear_home_1, :img_signature_clear_home_2, :img_signature_clear_home_3, :signature_clear_home_text_check, :signature_clear_home_text, :signature_clear_home, :img_signature_hobby_1, :img_signature_hobby_2, :img_signature_hobby_3, :img_signature_hobby_4, :signature_hobby_text_check, :signature_hobby_text, :signature_hobby]
 
   if SiteSetting.post_user_extras_enabled then
     add_to_serializer(:post, :post_user_extras, false) {
@@ -115,7 +105,7 @@ after_initialize do
           moderator: object.user.moderator,
           user_badges: object.user.custom_fields['user_badges'],
           signature_cooked: object.user.custom_fields['signature_cooked'], #PostUserExtraUtils.parse_signature(object.user.custom_fields['signature_cooked']),
-          img_signature_no_smoking: PostUserExtraUtils.get_img_signature_no_smoking(object.user.custom_fields),
+          img_signature_no_smoking: object.user.custom_fields['img_signature_no_smoking'],
           signature_no_smoking_text: PostUserExtraUtils.get_signature_no_smoking_text(object.user.custom_fields),
           signature_no_smoking: PostUserExtraUtils.count_days(object.user.custom_fields['signature_no_smoking']),
           img_signature_no_drink: PostUserExtraUtils.get_img_signature_no_drink(object.user.custom_fields),
