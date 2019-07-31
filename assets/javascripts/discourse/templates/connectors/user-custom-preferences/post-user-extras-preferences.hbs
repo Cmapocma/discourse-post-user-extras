@@ -38,21 +38,30 @@
     </label>
     <div class="controls">
       <label class='text-label'>
-        {{input type="radio" name="img_signature_no_smoking" checked=model.custom_fields.img_signature_no_smoking=="/plugins/discourse-post-user-extras/images/nosmoking.png" onclick="if ($(this).is(':checked')) $('input.img_signature_no_smoking').val('/plugins/discourse-post-user-extras/images/nosmoking.png');"}}
+        <input type="radio" id="img_signature_no_smoking_1" name="img_signature_no_smoking" onclick="if ($(this).is(':checked')) $('input.img_signature_no_smoking').val('/plugins/discourse-post-user-extras/images/nosmoking.png');" />
         <img src="/plugins/discourse-post-user-extras/images/nosmoking.png" style="width: 24px;padding-right: 4px;" />
-        {{input type="radio" name="img_signature_no_smoking" checked=model.custom_fields.img_signature_no_smoking=="/plugins/discourse-post-user-extras/images/cigarette.png" onclick="if ($(this).is(':checked')) $('input.img_signature_no_smoking').val('/plugins/discourse-post-user-extras/images/cigarette.png');"}}
+        <input type="radio" id="img_signature_no_smoking_2" name="img_signature_no_smoking" onclick="if ($(this).is(':checked')) $('input.img_signature_no_smoking').val('/plugins/discourse-post-user-extras/images/cigarette.png');" />
         <img src="/plugins/discourse-post-user-extras/images/cigarette.png" style="width: 24px;padding-right: 4px;" />
-        {{input type="radio" name="img_signature_no_smoking" checked=model.custom_fields.img_signature_no_smoking=="/plugins/discourse-post-user-extras/images/no-smoking.png" onclick="if ($(this).is(':checked')) $('input.img_signature_no_smoking').val('/plugins/discourse-post-user-extras/images/no-smoking.png');"}}
+        <input type="radio" id="img_signature_no_smoking_3" name="img_signature_no_smoking" onclick="if ($(this).is(':checked')) $('input.img_signature_no_smoking').val('/plugins/discourse-post-user-extras/images/no-smoking.png');" />
         <img src="/plugins/discourse-post-user-extras/images/no-smoking.png" style="width: 24px;padding-right: 4px;" />
-        {{input type="radio" name="img_signature_no_smoking" checked=model.custom_fields.img_signature_no_smoking=="/plugins/discourse-post-user-extras/images/quit-smoking-1.png" onclick="if ($(this).is(':checked')) $('input.img_signature_no_smoking').val('/plugins/discourse-post-user-extras/images/quit-smoking-1.png');"}}
+        <input type="radio" id="img_signature_no_smoking_4" name="img_signature_no_smoking" onclick="if ($(this).is(':checked')) $('input.img_signature_no_smoking').val('/plugins/discourse-post-user-extras/images/quit-smoking-1.png');" />
         <img src="/plugins/discourse-post-user-extras/images/quit-smoking-1.png" style="width: 24px;padding-right: 4px;" />
-        {{input type="radio" name="img_signature_no_smoking" checked=model.custom_fields.img_signature_no_smoking=="/plugins/discourse-post-user-extras/images/quit-smoking.png" onclick="if ($(this).is(':checked')) $('input.img_signature_no_smoking').val('/plugins/discourse-post-user-extras/images/quit-smoking.png');"}}
+        <input type="radio" id="img_signature_no_smoking_5" name="img_signature_no_smoking" onclick="if ($(this).is(':checked')) $('input.img_signature_no_smoking').val('/plugins/discourse-post-user-extras/images/quit-smoking.png');" />
         <img src="/plugins/discourse-post-user-extras/images/quit-smoking.png" style="width: 24px;padding-right: 4px;" />
-        {{input type="radio" name="img_signature_no_smoking" checked=model.custom_fields.img_signature_no_smoking=="/plugins/discourse-post-user-extras/images/no_smoking3.png" onclick="if ($(this).is(':checked')) $('input.img_signature_no_smoking').val('/plugins/discourse-post-user-extras/images/no_smoking3.png');"}}
+        <input type="radio" id="img_signature_no_smoking_6" name="img_signature_no_smoking" onclick="if ($(this).is(':checked')) $('input.img_signature_no_smoking').val('/plugins/discourse-post-user-extras/images/no_smoking3.png');" />
         <img src="/plugins/discourse-post-user-extras/images/no_smoking3.png" style="width: 24px;padding-right: 4px;" />
-        {{input type="radio" name="img_signature_no_smoking" checked=model.custom_fields.img_signature_no_smoking==""onclick="if ($(this).is(':checked')) $('input.img_signature_no_smoking').val('');'"}}
+        <input type="radio" id="img_signature_no_smoking_7" name="img_signature_no_smoking" onclick="if ($(this).is(':checked')) $('input.img_signature_no_smoking').val('');'" />
         Без иконки
         {{input type="hidden" class="img_signature_no_smoking" value=model.custom_fields.img_signature_no_smoking}}
+        <script type="text/javascript">
+        $('#img_signature_no_smoking_1').attr('checked', $('input.img_signature_no_smoking').val()=="/plugins/discourse-post-user-extras/images/nosmoking.png");
+        $('#img_signature_no_smoking_2').attr('checked', $('input.img_signature_no_smoking').val()=="/plugins/discourse-post-user-extras/images/cigarette.png");
+        $('#img_signature_no_smoking_3').attr('checked', $('input.img_signature_no_smoking').val()=="/plugins/discourse-post-user-extras/images/no-smoking.png");
+        $('#img_signature_no_smoking_4').attr('checked', $('input.img_signature_no_smoking').val()=="/plugins/discourse-post-user-extras/images/quit-smoking-1.png");
+        $('#img_signature_no_smoking_5').attr('checked', $('input.img_signature_no_smoking').val()=="/plugins/discourse-post-user-extras/images/quit-smoking.png");
+        $('#img_signature_no_smoking_6').attr('checked', $('input.img_signature_no_smoking').val()=="/plugins/discourse-post-user-extras/images/no_smoking3.png");
+        $('#img_signature_no_smoking_7').attr('checked', $('input.img_signature_no_smoking').val()=="");
+        </script>
       </label>
       <div class="desc"><i>будет использовано первое выбранное изображение</i></div>
     </div>
