@@ -40,12 +40,12 @@ function attachPostUserExtras(api)
         const enabled = currentUser.get("custom_fields.see_signatures");
         if (enabled) 
         {
-          const result_no_smoking = setСounter(post_user_extras.signature_no_smoking, post_user_extras.signature_no_smoking_text, post_user_extras.img_signature_no_smoking);
-          const result_no_drink = setСounter(post_user_extras.signature_no_drink, post_user_extras.signature_no_drink_text, post_user_extras.img_signature_no_drink);
-          const result_proper_nutrition = setСounter(post_user_extras.signature_proper_nutrition, post_user_extras.signature_proper_nutrition_text, post_user_extras.img_signature_proper_nutrition);
-          const result_fitnes = setСounter(post_user_extras.signature_fitnes, post_user_extras.signature_fitnes_text, post_user_extras.img_signature_fitnes);
-          const result_clear_home = setСounter(post_user_extras.signature_clear_home, post_user_extras.signature_clear_home_text, post_user_extras.img_signature_clear_home);
-          const result_hobby = setСounter(post_user_extras.signature_hobby,  post_user_extras.signature_hobby_text, post_user_extras.img_signature_hobby);
+          const result_no_smoking = post_user_extras.counter_no_smoking;
+          const result_no_drink = post_user_extras.counter_no_drink;
+          const result_proper_nutrition = post_user_extras.counter_proper_nutrition;
+          const result_fitnes = post_user_extras.counter_fitnes;
+          const result_clear_home = post_user_extras.counter_clear_home;
+          const result_hobby = post_user_extras.counter_hobby;
           const signature_cooked = post_user_extras.signature_cooked != undefined && post_user_extras.signature_cooked != null && post_user_extras.signature_cooked != 'null' ? post_user_extras.signature_cooked : '';
         
           if (result_no_smoking != '' || result_no_drink != '' || result_proper_nutrition != '' || result_fitnes != '' || result_clear_home != '' || result_hobby != '' || signature_cooked != '') 
@@ -76,18 +76,20 @@ function getArrayIconGroupsAndBadges(currentUser, dec)
       groups.push(dec.h("div.user_moderator", { title: "модератор" }));
     }
     var i;
-    for (i = 0; i < post_user_extras.groups.length; i++)
+    
+    if (post_user_extras.user_groups != undefined && post_user_extras.user_groups != '')
     {
-      if (post_user_extras.groups[i].flair_url != null && post_user_extras.groups[i].flair_url != '')
+      var user_groups = JSON.parse(post_user_extras.user_groups);
+      for (i = 0; i < user_groups.length; i++)
       {
-        if (post_user_extras.groups[i].flair_url.includes("fa-")) 
+        if (user_groups[i].image.includes("fa-")) 
         {
-          //const covertedIcon = convertIconClass(post_user_extras.groups[i].flair_url);
-          //groups.push(dec.h("div.fa", { title: post_user_extras.groups[i].name, style: "background:#" + post_user_extras.groups[i].flair_bg_color + ";color:#" + post_user_extras.groups[i].flair_color }, [ iconNode(covertedIcon) ]));
+          //const covertedIcon = convertIconClass(user_groups[i].image);
+          //groups.push(dec.h("div.fa", { title: user_groups[i].name, style: "background:#" + user_groups[i].flair_bg_color + ";color:#" + user_groups[i].flair_color }, [ iconNode(covertedIcon) ]));
         }
         else 
         {
-          groups.push(dec.h("div", { title: post_user_extras.groups[i].name, style: "background-image:url(" + post_user_extras.groups[i].flair_url + ");" }));
+          groups.push(dec.h("div", { title: user_groups[i].name, style: "background-image:url(" + user_groups[i].image + ");" }));
         }
       }
     }
@@ -112,18 +114,6 @@ function getArrayIconGroupsAndBadges(currentUser, dec)
   }
 
   return array;
-}
-
-function setСounter(days, text, url)
-{
-  var result = '';
-  if (days != undefined && days != null && days != '')
-  {
-    text = text != undefined && text != null ? text : '';
-    var img = url != undefined && url != null && url.includes('/plugins/discourse-post-user-extras/images/') ? ('<img src="' + url + '" title="' + text + '" class="emoji" alt="' + text + '" />') : '';
-    result = '<div class="signature-counter">' + img + ' <font size="2"><em>' + text + ' ' + days + '.</em></font></div>';
-  }
-  return result;
 }
 
 export default 
