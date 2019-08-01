@@ -12,15 +12,9 @@ DiscoursePluginRegistry.serialized_current_user_fields << "see_groups_icon"
 DiscoursePluginRegistry.serialized_current_user_fields << "see_badges_icon"
 DiscoursePluginRegistry.serialized_current_user_fields << "see_signatures"
 DiscoursePluginRegistry.serialized_current_user_fields << "signature_raw"
-DiscoursePluginRegistry.serialized_current_user_fields << "img_signature_no_smoking_1"
-DiscoursePluginRegistry.serialized_current_user_fields << "img_signature_no_smoking_2"
-DiscoursePluginRegistry.serialized_current_user_fields << "img_signature_no_smoking_3"
-DiscoursePluginRegistry.serialized_current_user_fields << "img_signature_no_smoking_4"
-DiscoursePluginRegistry.serialized_current_user_fields << "img_signature_no_smoking_5"
-DiscoursePluginRegistry.serialized_current_user_fields << "img_signature_no_smoking_6"
-DiscoursePluginRegistry.serialized_current_user_fields << "signature_no_smoking_text_check"
-DiscoursePluginRegistry.serialized_current_user_fields << "signature_no_smoking_text"
-DiscoursePluginRegistry.serialized_current_user_fields << "signature_no_smoking"
+DiscoursePluginRegistry.serialized_current_user_fields << "counter_no_smoking_img"
+DiscoursePluginRegistry.serialized_current_user_fields << "counter_no_smoking_text"
+DiscoursePluginRegistry.serialized_current_user_fields << "counter_no_smoking_date"
 DiscoursePluginRegistry.serialized_current_user_fields << "img_signature_no_drink_1"
 DiscoursePluginRegistry.serialized_current_user_fields << "img_signature_no_drink_2"
 DiscoursePluginRegistry.serialized_current_user_fields << "img_signature_no_drink_3"
@@ -59,15 +53,9 @@ after_initialize do
   User.register_custom_field_type('see_badges_icon', :boolean)
   User.register_custom_field_type('see_signatures', :boolean)
   User.register_custom_field_type('signature_raw', :text)
-  User.register_custom_field_type('img_signature_no_smoking_1', :boolean)
-  User.register_custom_field_type('img_signature_no_smoking_2', :boolean)
-  User.register_custom_field_type('img_signature_no_smoking_3', :boolean)
-  User.register_custom_field_type('img_signature_no_smoking_4', :boolean)
-  User.register_custom_field_type('img_signature_no_smoking_5', :boolean)
-  User.register_custom_field_type('img_signature_no_smoking_6', :boolean)
-  User.register_custom_field_type('signature_no_smoking_text_check', :boolean)
-  User.register_custom_field_type('signature_no_smoking_text', :text)
-  User.register_custom_field_type('signature_no_smoking', :text)
+  User.register_custom_field_type('counter_no_smoking_img', :text)
+  User.register_custom_field_type('counter_no_smoking_text', :text)
+  User.register_custom_field_type('counter_no_smoking_date', :text)
   User.register_custom_field_type('img_signature_no_drink_1', :boolean)
   User.register_custom_field_type('img_signature_no_drink_2', :boolean)
   User.register_custom_field_type('img_signature_no_drink_3', :boolean)
@@ -100,7 +88,7 @@ after_initialize do
   User.register_custom_field_type('signature_hobby_text', :text)
   User.register_custom_field_type('signature_hobby', :text)
 
-  register_editable_user_custom_field [:see_groups_icon, :see_badges_icon, :see_signatures, :signature_raw, :img_signature_no_smoking_1, :img_signature_no_smoking_2, :img_signature_no_smoking_3, :img_signature_no_smoking_4, :img_signature_no_smoking_5, :img_signature_no_smoking_6, :signature_no_smoking_text_check, :signature_no_smoking_text, :signature_no_smoking, :img_signature_no_drink_1, :img_signature_no_drink_2, :img_signature_no_drink_3, :img_signature_no_drink_4, :signature_no_drink_text_check, :signature_no_drink_text, :signature_no_drink, :img_signature_proper_nutrition_1, :img_signature_proper_nutrition_2, :img_signature_proper_nutrition_3, :signature_proper_nutrition_text_check, :signature_proper_nutrition_text, :signature_proper_nutrition, :img_signature_fitnes_1, :img_signature_fitnes_2, :signature_fitnes_text_check, :signature_fitnes_text, :signature_fitnes, :img_signature_clear_home_1, :img_signature_clear_home_2, :img_signature_clear_home_3, :signature_clear_home_text_check, :signature_clear_home_text, :signature_clear_home, :img_signature_hobby_1, :img_signature_hobby_2, :img_signature_hobby_3, :img_signature_hobby_4, :signature_hobby_text_check, :signature_hobby_text, :signature_hobby]
+  register_editable_user_custom_field [:see_groups_icon, :see_badges_icon, :see_signatures, :signature_raw, :counter_no_smoking_img, :counter_no_smoking_text, :counter_no_smoking_date, :img_signature_no_drink_1, :img_signature_no_drink_2, :img_signature_no_drink_3, :img_signature_no_drink_4, :signature_no_drink_text_check, :signature_no_drink_text, :signature_no_drink, :img_signature_proper_nutrition_1, :img_signature_proper_nutrition_2, :img_signature_proper_nutrition_3, :signature_proper_nutrition_text_check, :signature_proper_nutrition_text, :signature_proper_nutrition, :img_signature_fitnes_1, :img_signature_fitnes_2, :signature_fitnes_text_check, :signature_fitnes_text, :signature_fitnes, :img_signature_clear_home_1, :img_signature_clear_home_2, :img_signature_clear_home_3, :signature_clear_home_text_check, :signature_clear_home_text, :signature_clear_home, :img_signature_hobby_1, :img_signature_hobby_2, :img_signature_hobby_3, :img_signature_hobby_4, :signature_hobby_text_check, :signature_hobby_text, :signature_hobby]
 
   if SiteSetting.post_user_extras_enabled then
     add_to_serializer(:post, :post_user_extras, false) {
@@ -172,20 +160,20 @@ class PostUserExtraUtils
 
   def self.get_counter_no_smoking(custom_fields)
     counter = ""
-    days = count_days(custom_fields['signature_no_smoking'])
+    days = count_days(custom_fields['counter_no_smoking_date'])
     if days != "" then
-      text = get_text(custom_fields, "signature_no_smoking_text", "Не курю")
-      if custom_fields['img_signature_no_smoking_1'] then
+      text = custom_fields['counter_no_smoking_text'] != nil && custom_fields['counter_no_smoking_text'] != "" ? custom_fields['counter_no_smoking_text'] : "Не курю"
+      if custom_fields['counter_no_smoking_img'] == nil || custom_fields['counter_no_smoking_img'] == "" then
         counter = "<div class=\"signature-counter\"><img src=\"/plugins/discourse-post-user-extras/images/nosmoking.png\" title=\"#{text}\" class=\"emoji\" alt=\"#{text}\" /> <font size=\"2\"><em>#{text} #{days}.</em></font></div>"
-      elsif custom_fields['img_signature_no_smoking_2'] then
+      elsif custom_fields['counter_no_smoking_img'] == "1" then
         counter = "<div class=\"signature-counter\"><img src=\"/plugins/discourse-post-user-extras/images/cigarette.png\" title=\"#{text}\" class=\"emoji\" alt=\"#{text}\" /> <font size=\"2\"><em>#{text} #{days}.</em></font></div>"
-      elsif custom_fields['img_signature_no_smoking_3'] then
+      elsif custom_fields['counter_no_smoking_img'] == "2" then
         counter = "<div class=\"signature-counter\"><img src=\"/plugins/discourse-post-user-extras/images/no-smoking.png\" title=\"#{text}\" class=\"emoji\" alt=\"#{text}\" /> <font size=\"2\"><em>#{text} #{days}.</em></font></div>"
-      elsif custom_fields['img_signature_no_smoking_4'] then
+      elsif custom_fields['counter_no_smoking_img'] == "3" then
         counter = "<div class=\"signature-counter\"><img src=\"/plugins/discourse-post-user-extras/images/quit-smoking-1.png\" title=\"#{text}\" class=\"emoji\" alt=\"#{text}\" /> <font size=\"2\"><em>#{text} #{days}.</em></font></div>"
-      elsif custom_fields['img_signature_no_smoking_5'] then
+      elsif custom_fields['counter_no_smoking_img'] == "4" then
         counter = "<div class=\"signature-counter\"><img src=\"/plugins/discourse-post-user-extras/images/quit-smoking.png\" title=\"#{text}\" class=\"emoji\" alt=\"#{text}\" /> <font size=\"2\"><em>#{text} #{days}.</em></font></div>"
-      elsif custom_fields['img_signature_no_smoking_6'] then
+      elsif custom_fields['counter_no_smoking_img'] == "5" then
         counter = "<div class=\"signature-counter\"><img src=\"/plugins/discourse-post-user-extras/images/no_smoking3.png\" title=\"#{text}\" class=\"emoji\" alt=\"#{text}\" /> <font size=\"2\"><em>#{text} #{days}.</em></font></div>"
       else
         counter = "<div class=\"signature-counter\"><font size=\"2\"><em>#{text} #{days}.</em></font></div>"

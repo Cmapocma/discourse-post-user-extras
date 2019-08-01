@@ -38,33 +38,45 @@
     </label>
     <div class="controls">
       <label class='text-label'>
-        {{input type="checkbox" checked=model.custom_fields.img_signature_no_smoking_1}}
+        {{radio-button class="subscription-choice" name="counter_no_smoking_img" value="" selection=model.custom_fields.counter_no_smoking_img}}
         <img src="/plugins/discourse-post-user-extras/images/nosmoking.png" style="width: 24px;padding-right: 4px;" />
-        {{input type="checkbox" checked=model.custom_fields.img_signature_no_smoking_2}}
+      </label>
+      <label class='text-label'>
+        {{radio-button class="subscription-choice" name="counter_no_smoking_img" value="1" selection=model.custom_fields.counter_no_smoking_img}}
         <img src="/plugins/discourse-post-user-extras/images/cigarette.png" style="width: 24px;padding-right: 4px;" />
-        {{input type="checkbox" checked=model.custom_fields.img_signature_no_smoking_3}}
+      </label>
+      <label class='text-label'>
+        {{radio-button class="subscription-choice" name="counter_no_smoking_img" value="2" selection=model.custom_fields.counter_no_smoking_img}}
         <img src="/plugins/discourse-post-user-extras/images/no-smoking.png" style="width: 24px;padding-right: 4px;" />
-        {{input type="checkbox" checked=model.custom_fields.img_signature_no_smoking_4}}
+      </label>
+      <label class='text-label'>
+        {{radio-button class="subscription-choice" name="counter_no_smoking_img" value="3" selection=model.custom_fields.counter_no_smoking_img}}
         <img src="/plugins/discourse-post-user-extras/images/quit-smoking-1.png" style="width: 24px;padding-right: 4px;" />
-        {{input type="checkbox" checked=model.custom_fields.img_signature_no_smoking_5}}
+      </label>
+      <label class='text-label'>
+        {{radio-button class="subscription-choice" name="counter_no_smoking_img" value="4" selection=model.custom_fields.counter_no_smoking_img}}
         <img src="/plugins/discourse-post-user-extras/images/quit-smoking.png" style="width: 24px;padding-right: 4px;" />
-        {{input type="checkbox" checked=model.custom_fields.img_signature_no_smoking_6}}
+      </label>
+      <label class='text-label'>
+        {{radio-button class="subscription-choice" name="counter_no_smoking_img" value="5" selection=model.custom_fields.counter_no_smoking_img}}
         <img src="/plugins/discourse-post-user-extras/images/no_smoking3.png" style="width: 24px;padding-right: 4px;" />
       </label>
-      <div class="desc"><i>будет использовано первое выбранное изображение</i></div>
+      <label class='text-label'>
+        {{radio-button class="subscription-choice" name="counter_no_smoking_img" value="6" selection=model.custom_fields.counter_no_smoking_img}}
+        Без иеонки
+      </label>
     </div>
     <div class="controls">
-      <div class="desc"><b>Свой текст у счётчика</b></div>
       <label class='text-label'>
-        {{input type="checkbox" checked=model.custom_fields.signature_no_smoking_text_check}}
-        {{input type="text" class="input-medium" value=model.custom_fields.signature_no_smoking_text}}
-        &nbsp;&nbsp;&nbsp;N дней
+        {{input type="text" class="input-medium" value=model.custom_fields.counter_no_smoking_text}}
+        &nbsp;&nbsp;&nbsp;N дней.
       </label>
+      <div class="desc"><i>Если поле оставить пустым, то текст будет - Не курю N дней.</i></div>
     </div>
     <div class="controls">
       <div class="desc"><b>Дата</b></div>
       <label class='text-label'>
-        {{input type="text" class="input-medium" value=model.custom_fields.signature_no_smoking}}
+        {{input type="text" class="input-medium" value=model.custom_fields.counter_no_smoking_date}}
       </label>
       <div class="desc"><i>дату пишите в формате "год-месяц-день", пример: 2019-03-25</i></div>
     </div>
