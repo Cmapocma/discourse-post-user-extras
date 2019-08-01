@@ -1,12 +1,12 @@
 import { withPluginApi } from "discourse/lib/plugin-api";
 import RawHtml from "discourse/widgets/raw-html";
 
-function attachPostUserExtras(api, siteSettings) 
+function attachPostUserExtras(api, controller) 
 {
   api.includePostAttributes("post_user_extras");
 
-  var elementname = this.site.mobileView ? "poster-name:after" : "post-avatar:after";
-  var divname = this.site.mobileView ? "div.group-icon-widget-mobile" : "div.group-icon-widget";
+  var elementname = controller.site.mobileView ? "poster-name:after" : "post-avatar:after";
+  var divname = controller.site.mobileView ? "div.group-icon-widget-mobile" : "div.group-icon-widget";
 
   api.decorateWidget(elementname, dec => {
     if (!Ember.isEmpty(dec.attrs.post_user_extras)) 
@@ -96,9 +96,10 @@ export default
   initialize(container) 
   {
     const siteSettings = container.lookup("site-settings:main");
+    const controller = container.lookup("controller:application");
     if (siteSettings.post_user_extras_enabled) 
     {
-      withPluginApi("0.1", api => attachPostUserExtras(api, siteSettings));
+      withPluginApi("0.1", api => attachPostUserExtras(api, controller));
     }
   }
 };
