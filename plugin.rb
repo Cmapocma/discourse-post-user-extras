@@ -234,7 +234,7 @@ class PostUserExtraUtils
     if custom_fields['img_signature_proper_nutrition_1'] then
       img_signature_proper_nutrition = "/plugins/discourse-post-user-extras/images/pp.png"
     elsif custom_fields['img_signature_proper_nutrition_2'] then
-      img_signature_proper_nutrition = "/plugins/discourse-post-user-extras/images/diet.png"
+      img_signature_proper_nutrition = "/plugins/discourse-post-user-extras/images/diet2.png"
     elsif custom_fields['img_signature_proper_nutrition_3'] then
       img_signature_proper_nutrition = "/plugins/discourse-post-user-extras/images/salad.png"
     end
