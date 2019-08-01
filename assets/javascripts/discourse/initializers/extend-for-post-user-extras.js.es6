@@ -1,31 +1,21 @@
 import { withPluginApi } from "discourse/lib/plugin-api";
-//import { iconNode, convertIconClass } from "discourse-common/lib/icon-library";
 import RawHtml from "discourse/widgets/raw-html";
 
-function attachPostUserExtras(api) 
+function attachPostUserExtras(api, siteSettings) 
 {
   api.includePostAttributes("post_user_extras");
 
-  api.decorateWidget("post-avatar:after", dec => {
-    if (!Ember.isEmpty(dec.attrs.post_user_extras)) 
-    {
-      const currentUser = api.getCurrentUser();
-      if (currentUser) 
-      {
-        var array = getArrayIconGroupsAndBadges(currentUser, dec);
-        return dec.h("div.group-icon-widget", array);
-      }
-    }
-  });
+  var elementname = siteSettings.enable_mobile_theme ? "poster-name:after" : "post-avatar:after";
+  var divname = siteSettings.enable_mobile_theme ? "div.group-icon-widget-mobile" : "div.group-icon-widget";
 
-  api.decorateWidget('poster-name:after', dec => {
+  api.decorateWidget(elementname, dec => {
     if (!Ember.isEmpty(dec.attrs.post_user_extras)) 
     {
       const currentUser = api.getCurrentUser();
       if (currentUser) 
       {
         var array = getArrayIconGroupsAndBadges(currentUser, dec);
-        return dec.h("div.group-icon-widget-mobile", array);
+        return dec.h(divname, array);
       }
     }
   });
@@ -46,7 +36,7 @@ function attachPostUserExtras(api)
           const result_fitnes = post_user_extras.counter_fitnes;
           const result_clear_home = post_user_extras.counter_clear_home;
           const result_hobby = post_user_extras.counter_hobby;
-          const signature_cooked = post_user_extras.signature_cooked != undefined && post_user_extras.signature_cooked != null && post_user_extras.signature_cooked != 'null' ? post_user_extras.signature_cooked : '';
+          const signature_cooked = post_user_extras.signature_cooked;
         
           if (result_no_smoking != '' || result_no_drink != '' || result_proper_nutrition != '' || result_fitnes != '' || result_clear_home != '' || result_hobby != '' || signature_cooked != '') 
           {
@@ -75,11 +65,6 @@ function getArrayIconGroupsAndBadges(currentUser, dec)
     else if (post_user_extras.moderator)
     {
       groups.push(dec.h("div.user_moderator", { title: "модератор" }));
-    }
-    
-    if (post_user_extras.primary_group_flair_url != undefined && post_user_extras.primary_group_flair_url != '' && !post_user_extras.primary_group_flair_url.includes("fa-"))
-    {
-      groups.push(dec.h("div", { title: post_user_extras.primary_group_name, style: "background-image:url(" + post_user_extras.primary_group_flair_url + ");" }));
     }
 
     array.push(groups);
@@ -113,7 +98,7 @@ export default
     const siteSettings = container.lookup("site-settings:main");
     if (siteSettings.post_user_extras_enabled) 
     {
-      withPluginApi("0.1", api => attachPostUserExtras(api));
+      withPluginApi("0.1", api => attachPostUserExtras(api, siteSettings));
     }
   }
 };

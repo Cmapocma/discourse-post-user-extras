@@ -112,10 +112,8 @@ after_initialize do
           trust_level_title: PostUserExtraUtils.get_trust_level_title(object.user.trust_level),
           admin: object.user.admin,
           moderator: object.user.moderator,
-          primary_group_name: object.user.primary_group_name,
-          primary_group_flair_url: object.user.primary_group_flair_url,
           user_badges: object.user.custom_fields['user_badges'],
-          signature_cooked: object.user.custom_fields['signature_cooked'], #PostUserExtraUtils.parse_signature(object.user.custom_fields['signature_cooked']),
+          signature_cooked: PostUserExtraUtils.get_signature_cooked(object.user.custom_fields['signature_cooked']), #PostUserExtraUtils.parse_signature(object.user.custom_fields['signature_cooked']),
           counter_no_smoking: PostUserExtraUtils.get_counter_no_smoking(object.user.custom_fields),
           counter_no_drink: PostUserExtraUtils.get_counter_no_drink(object.user.custom_fields),
           counter_proper_nutrition: PostUserExtraUtils.get_counter_proper_nutrition(object.user.custom_fields),
@@ -168,6 +166,10 @@ register_asset "stylesheets/desktop/post-user-extras.scss", :desktop
 register_asset "stylesheets/mobile/post-user-extras.scss", :mobile
 
 class PostUserExtraUtils
+  def self.get_signature_cooked(signature_cooked)
+    return signature_cooked != nil ? signature_cooked : ""
+  end
+
   def self.get_counter_no_smoking(custom_fields)
     counter = ""
     days = count_days(custom_fields['signature_no_smoking'])
