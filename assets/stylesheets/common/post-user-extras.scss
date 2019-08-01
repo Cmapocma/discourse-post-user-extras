@@ -57,3 +57,8 @@ div.user_admin
 {
     background-image:url('/plugins/discourse-post-user-extras/images/firewall.png');
 }
+
+div.controls label.counter
+{
+    display:inline-block;
+}

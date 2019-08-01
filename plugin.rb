@@ -14,37 +14,21 @@ DiscoursePluginRegistry.serialized_current_user_fields << "see_signatures"
 DiscoursePluginRegistry.serialized_current_user_fields << "signature_raw"
 DiscoursePluginRegistry.serialized_current_user_fields << "counter_no_smoking_img"
 DiscoursePluginRegistry.serialized_current_user_fields << "counter_no_smoking_text"
-DiscoursePluginRegistry.serialized_current_user_fields << "counter_no_smoking_date"
-DiscoursePluginRegistry.serialized_current_user_fields << "img_signature_no_drink_1"
-DiscoursePluginRegistry.serialized_current_user_fields << "img_signature_no_drink_2"
-DiscoursePluginRegistry.serialized_current_user_fields << "img_signature_no_drink_3"
-DiscoursePluginRegistry.serialized_current_user_fields << "img_signature_no_drink_4"
-DiscoursePluginRegistry.serialized_current_user_fields << "signature_no_drink_text_check"
-DiscoursePluginRegistry.serialized_current_user_fields << "signature_no_drink_text"
+DiscoursePluginRegistry.serialized_current_user_fields << "signature_no_smoking"
+DiscoursePluginRegistry.serialized_current_user_fields << "counter_no_drink_img"
+DiscoursePluginRegistry.serialized_current_user_fields << "counter_no_drink_text"
 DiscoursePluginRegistry.serialized_current_user_fields << "signature_no_drink"
-DiscoursePluginRegistry.serialized_current_user_fields << "img_signature_proper_nutrition_1"
-DiscoursePluginRegistry.serialized_current_user_fields << "img_signature_proper_nutrition_2"
-DiscoursePluginRegistry.serialized_current_user_fields << "img_signature_proper_nutrition_3"
-DiscoursePluginRegistry.serialized_current_user_fields << "signature_proper_nutrition_text_check"
-DiscoursePluginRegistry.serialized_current_user_fields << "signature_proper_nutrition_text"
+DiscoursePluginRegistry.serialized_current_user_fields << "counter_proper_nutrition_img"
+DiscoursePluginRegistry.serialized_current_user_fields << "counter_proper_nutrition_text"
 DiscoursePluginRegistry.serialized_current_user_fields << "signature_proper_nutrition"
-DiscoursePluginRegistry.serialized_current_user_fields << "img_signature_fitnes_1"
-DiscoursePluginRegistry.serialized_current_user_fields << "img_signature_fitnes_2"
-DiscoursePluginRegistry.serialized_current_user_fields << "signature_fitnes_text_check"
-DiscoursePluginRegistry.serialized_current_user_fields << "signature_fitnes_text"
+DiscoursePluginRegistry.serialized_current_user_fields << "counter_fitnes_img"
+DiscoursePluginRegistry.serialized_current_user_fields << "counter_fitnes_text"
 DiscoursePluginRegistry.serialized_current_user_fields << "signature_fitnes"
-DiscoursePluginRegistry.serialized_current_user_fields << "img_signature_clear_home_1"
-DiscoursePluginRegistry.serialized_current_user_fields << "img_signature_clear_home_2"
-DiscoursePluginRegistry.serialized_current_user_fields << "img_signature_clear_home_3"
-DiscoursePluginRegistry.serialized_current_user_fields << "signature_clear_home_text_check"
-DiscoursePluginRegistry.serialized_current_user_fields << "signature_clear_home_text"
+DiscoursePluginRegistry.serialized_current_user_fields << "counter_clear_home_img"
+DiscoursePluginRegistry.serialized_current_user_fields << "counter_clear_home_text"
 DiscoursePluginRegistry.serialized_current_user_fields << "signature_clear_home"
-DiscoursePluginRegistry.serialized_current_user_fields << "img_signature_hobby_1"
-DiscoursePluginRegistry.serialized_current_user_fields << "img_signature_hobby_2"
-DiscoursePluginRegistry.serialized_current_user_fields << "img_signature_hobby_3"
-DiscoursePluginRegistry.serialized_current_user_fields << "img_signature_hobby_4"
-DiscoursePluginRegistry.serialized_current_user_fields << "signature_hobby_text_check"
-DiscoursePluginRegistry.serialized_current_user_fields << "signature_hobby_text"
+DiscoursePluginRegistry.serialized_current_user_fields << "counter_hobby_img"
+DiscoursePluginRegistry.serialized_current_user_fields << "counter_hobby_text"
 DiscoursePluginRegistry.serialized_current_user_fields << "signature_hobby"
 
 after_initialize do
@@ -55,40 +39,24 @@ after_initialize do
   User.register_custom_field_type('signature_raw', :text)
   User.register_custom_field_type('counter_no_smoking_img', :text)
   User.register_custom_field_type('counter_no_smoking_text', :text)
-  User.register_custom_field_type('counter_no_smoking_date', :text)
-  User.register_custom_field_type('img_signature_no_drink_1', :boolean)
-  User.register_custom_field_type('img_signature_no_drink_2', :boolean)
-  User.register_custom_field_type('img_signature_no_drink_3', :boolean)
-  User.register_custom_field_type('img_signature_no_drink_4', :boolean)
-  User.register_custom_field_type('signature_no_drink_text_check', :boolean)
-  User.register_custom_field_type('signature_no_drink_text', :text)
+  User.register_custom_field_type('signature_no_smoking', :text)
+  User.register_custom_field_type('counter_no_drink_img', :text)
+  User.register_custom_field_type('counter_no_drink_text', :text)
   User.register_custom_field_type('signature_no_drink', :text)
-  User.register_custom_field_type('img_signature_proper_nutrition_1', :boolean)
-  User.register_custom_field_type('img_signature_proper_nutrition_2', :boolean)
-  User.register_custom_field_type('img_signature_proper_nutrition_3', :boolean)
-  User.register_custom_field_type('signature_proper_nutrition_text_check', :boolean)
-  User.register_custom_field_type('signature_proper_nutrition_text', :text)
+  User.register_custom_field_type('counter_proper_nutrition_img', :text)
+  User.register_custom_field_type('counter_proper_nutrition_text', :text)
   User.register_custom_field_type('signature_proper_nutrition', :text)
-  User.register_custom_field_type('img_signature_fitnes_1', :boolean)
-  User.register_custom_field_type('img_signature_fitnes_2', :boolean)
-  User.register_custom_field_type('signature_fitnes_text_check', :boolean)
-  User.register_custom_field_type('signature_fitnes_text', :text)
+  User.register_custom_field_type('counter_fitnes_img', :text)
+  User.register_custom_field_type('counter_fitnes_text', :text)
   User.register_custom_field_type('signature_fitnes', :text)
-  User.register_custom_field_type('img_signature_clear_home_1', :boolean)
-  User.register_custom_field_type('img_signature_clear_home_2', :boolean)
-  User.register_custom_field_type('img_signature_clear_home_3', :boolean)
-  User.register_custom_field_type('signature_clear_home_text_check', :boolean)
-  User.register_custom_field_type('signature_clear_home_text', :text)
+  User.register_custom_field_type('counter_clear_home_img', :text)
+  User.register_custom_field_type('counter_clear_home_text', :text)
   User.register_custom_field_type('signature_clear_home', :text)
-  User.register_custom_field_type('img_signature_hobby_1', :boolean)
-  User.register_custom_field_type('img_signature_hobby_2', :boolean)
-  User.register_custom_field_type('img_signature_hobby_3', :boolean)
-  User.register_custom_field_type('img_signature_hobby_4', :boolean)
-  User.register_custom_field_type('signature_hobby_text_check', :boolean)
-  User.register_custom_field_type('signature_hobby_text', :text)
+  User.register_custom_field_type('counter_hobby_img', :text)
+  User.register_custom_field_type('counter_hobby_text', :text)
   User.register_custom_field_type('signature_hobby', :text)
 
-  register_editable_user_custom_field [:see_groups_icon, :see_badges_icon, :see_signatures, :signature_raw, :counter_no_smoking_img, :counter_no_smoking_text, :counter_no_smoking_date, :img_signature_no_drink_1, :img_signature_no_drink_2, :img_signature_no_drink_3, :img_signature_no_drink_4, :signature_no_drink_text_check, :signature_no_drink_text, :signature_no_drink, :img_signature_proper_nutrition_1, :img_signature_proper_nutrition_2, :img_signature_proper_nutrition_3, :signature_proper_nutrition_text_check, :signature_proper_nutrition_text, :signature_proper_nutrition, :img_signature_fitnes_1, :img_signature_fitnes_2, :signature_fitnes_text_check, :signature_fitnes_text, :signature_fitnes, :img_signature_clear_home_1, :img_signature_clear_home_2, :img_signature_clear_home_3, :signature_clear_home_text_check, :signature_clear_home_text, :signature_clear_home, :img_signature_hobby_1, :img_signature_hobby_2, :img_signature_hobby_3, :img_signature_hobby_4, :signature_hobby_text_check, :signature_hobby_text, :signature_hobby]
+  register_editable_user_custom_field [:see_groups_icon, :see_badges_icon, :see_signatures, :signature_raw, :counter_no_smoking_img, :counter_no_smoking_text, :signature_no_smoking, :counter_no_drink_img, :counter_no_drink_text, :signature_no_drink, :counter_proper_nutrition_img, :counter_proper_nutrition_text, :signature_proper_nutrition, :counter_fitnes_img, :counter_fitnes_text, :signature_fitnes, :counter_clear_home_img, :counter_clear_home_text, :signature_clear_home, :counter_hobby_img, :counter_hobby_text, :signature_hobby]
 
   if SiteSetting.post_user_extras_enabled then
     add_to_serializer(:post, :post_user_extras, false) {
@@ -101,7 +69,7 @@ after_initialize do
           admin: object.user.admin,
           moderator: object.user.moderator,
           user_badges: object.user.custom_fields['user_badges'],
-          signature_cooked: PostUserExtraUtils.get_signature_cooked(object.user.custom_fields['signature_cooked']), #PostUserExtraUtils.parse_signature(object.user.custom_fields['signature_cooked']),
+          signature_cooked: PostUserExtraUtils.get_signature_cooked(object.user.custom_fields['signature_cooked']),
           counter_no_smoking: PostUserExtraUtils.get_counter_no_smoking(object.user.custom_fields),
           counter_no_drink: PostUserExtraUtils.get_counter_no_drink(object.user.custom_fields),
           counter_proper_nutrition: PostUserExtraUtils.get_counter_proper_nutrition(object.user.custom_fields),
@@ -160,7 +128,7 @@ class PostUserExtraUtils
 
   def self.get_counter_no_smoking(custom_fields)
     counter = ""
-    days = count_days(custom_fields['counter_no_smoking_date'])
+    days = count_days(custom_fields['signature_no_smoking'])
     if days != "" then
       text = custom_fields['counter_no_smoking_text'] != nil && custom_fields['counter_no_smoking_text'] != "" ? custom_fields['counter_no_smoking_text'] : "Не курю"
       if custom_fields['counter_no_smoking_img'] == nil || custom_fields['counter_no_smoking_img'] == "" then
@@ -186,14 +154,14 @@ class PostUserExtraUtils
     counter = ""
     days = count_days(custom_fields['signature_no_drink'])
     if days != "" then
-      text = get_text(custom_fields, "signature_no_drink_text", "Не пью")
-      if custom_fields['img_signature_no_drink_1'] then
+      text = custom_fields['counter_no_drink_text'] != nil && custom_fields['counter_no_drink_text'] != "" ? custom_fields['counter_no_drink_text'] : "Не пью"
+      if custom_fields['counter_no_drink_img'] == nil || custom_fields['counter_no_drink_img'] == "" then
         counter = "<div class=\"signature-counter\"><img src=\"/plugins/discourse-post-user-extras/images/nodrink.png\" title=\"#{text}\" class=\"emoji\" alt=\"#{text}\" /> <font size=\"2\"><em>#{text} #{days}.</em></font></div>"
-      elsif custom_fields['img_signature_no_drink_2'] then
+      elsif custom_fields['counter_no_drink_img'] == "1" then
         counter = "<div class=\"signature-counter\"><img src=\"/plugins/discourse-post-user-extras/images/no-alcohol.png\" title=\"#{text}\" class=\"emoji\" alt=\"#{text}\" /> <font size=\"2\"><em>#{text} #{days}.</em></font></div>"
-      elsif custom_fields['img_signature_no_drink_3'] then
+      elsif custom_fields['counter_no_drink_img'] == "2" then
         counter = "<div class=\"signature-counter\"><img src=\"/plugins/discourse-post-user-extras/images/no-drinking.png\" title=\"#{text}\" class=\"emoji\" alt=\"#{text}\" /> <font size=\"2\"><em>#{text} #{days}.</em></font></div>"
-      elsif custom_fields['img_signature_no_drink_4'] then
+      elsif custom_fields['counter_no_drink_img'] == "3" then
         counter = "<div class=\"signature-counter\"><img src=\"/plugins/discourse-post-user-extras/images/no-drinks.png\" title=\"#{text}\" class=\"emoji\" alt=\"#{text}\" /> <font size=\"2\"><em>#{text} #{days}.</em></font></div>"
       else
         counter = "<div class=\"signature-counter\"><font size=\"2\"><em>#{text} #{days}.</em></font></div>"
@@ -204,14 +172,14 @@ class PostUserExtraUtils
   
   def self.get_counter_proper_nutrition(custom_fields)
     counter = ""
-    days = count_days(custom_fields['signature_no_drink'])
+    days = count_days(custom_fields['signature_proper_nutrition'])
     if days != "" then
-      text = get_text(custom_fields, "signature_proper_nutrition_text", "На ПП")
-      if custom_fields['img_signature_proper_nutrition_1'] then
+      text = custom_fields['counter_proper_nutrition_text'] != nil && custom_fields['counter_proper_nutrition_text'] != "" ? custom_fields['counter_proper_nutrition_text'] : "На ПП"
+      if custom_fields['counter_proper_nutrition_img'] == nil || custom_fields['counter_proper_nutrition_img'] == "" then
         counter = "<div class=\"signature-counter\"><img src=\"/plugins/discourse-post-user-extras/images/pp.png\" title=\"#{text}\" class=\"emoji\" alt=\"#{text}\" /> <font size=\"2\"><em>#{text} #{days}.</em></font></div>"
-      elsif custom_fields['img_signature_proper_nutrition_2'] then
+      elsif custom_fields['counter_proper_nutrition_img'] == "1" then
         counter = "<div class=\"signature-counter\"><img src=\"/plugins/discourse-post-user-extras/images/diet2.png\" title=\"#{text}\" class=\"emoji\" alt=\"#{text}\" /> <font size=\"2\"><em>#{text} #{days}.</em></font></div>"
-      elsif custom_fields['img_signature_proper_nutrition_3'] then
+      elsif custom_fields['counter_proper_nutrition_img'] == "2" then
         counter = "<div class=\"signature-counter\"><img src=\"/plugins/discourse-post-user-extras/images/salad.png\" title=\"#{text}\" class=\"emoji\" alt=\"#{text}\" /> <font size=\"2\"><em>#{text} #{days}.</em></font></div>"
       else
         counter = "<div class=\"signature-counter\"><font size=\"2\"><em>#{text} #{days}.</em></font></div>"
@@ -222,12 +190,12 @@ class PostUserExtraUtils
   
   def self.get_counter_fitnes(custom_fields)
     counter = ""
-    days = count_days(custom_fields['signature_no_drink'])
+    days = count_days(custom_fields['signature_fitnes'])
     if days != "" then
-      text = get_text(custom_fields, "signature_fitnes_text", "На спорте")
-      if custom_fields['img_signature_fitnes_1'] then
+      text = custom_fields['counter_fitnes_text'] != nil && custom_fields['counter_fitnes_text'] != "" ? custom_fields['counter_fitnes_text'] : "На спорте"
+      if custom_fields['counter_fitnes_img'] == nil || custom_fields['counter_fitnes_img'] == "" then
         counter = "<div class=\"signature-counter\"><img src=\"/plugins/discourse-post-user-extras/images/fit.png\" title=\"#{text}\" class=\"emoji\" alt=\"#{text}\" /> <font size=\"2\"><em>#{text} #{days}.</em></font></div>"
-      elsif custom_fields['img_signature_fitnes_2'] then
+      elsif custom_fields['counter_fitnes_img'] == "1" then
         counter = "<div class=\"signature-counter\"><img src=\"/plugins/discourse-post-user-extras/images/strong.png\" title=\"#{text}\" class=\"emoji\" alt=\"#{text}\" /> <font size=\"2\"><em>#{text} #{days}.</em></font></div>"
       else
         counter = "<div class=\"signature-counter\"><font size=\"2\"><em>#{text} #{days}.</em></font></div>"
@@ -238,14 +206,14 @@ class PostUserExtraUtils
   
   def self.get_counter_clear_home(custom_fields)
     counter = ""
-    days = count_days(custom_fields['signature_no_drink'])
+    days = count_days(custom_fields['signature_clear_home'])
     if days != "" then
-      text = get_text(custom_fields, "signature_clear_home_text", "В доме чисто")
-      if custom_fields['img_signature_clear_home_1'] then
+      text = custom_fields['counter_clear_home_text'] != nil && custom_fields['counter_clear_home_text'] != "" ? custom_fields['counter_clear_home_text'] : "В доме чисто"
+      if custom_fields['counter_clear_home_img'] == nil || custom_fields['counter_clear_home_img'] == "" then
         counter = "<div class=\"signature-counter\"><img src=\"/plugins/discourse-post-user-extras/images/home.png\" title=\"#{text}\" class=\"emoji\" alt=\"#{text}\" /> <font size=\"2\"><em>#{text} #{days}.</em></font></div>"
-      elsif custom_fields['img_signature_clear_home_2'] then
+      elsif custom_fields['counter_clear_home_img'] == "1" then
         counter = "<div class=\"signature-counter\"><img src=\"/plugins/discourse-post-user-extras/images/home2.png\" title=\"#{text}\" class=\"emoji\" alt=\"#{text}\" /> <font size=\"2\"><em>#{text} #{days}.</em></font></div>"
-      elsif custom_fields['img_signature_clear_home_3'] then
+      elsif custom_fields['counter_clear_home_img'] == "2" then
         counter = "<div class=\"signature-counter\"><img src=\"/plugins/discourse-post-user-extras/images/house.png\" title=\"#{text}\" class=\"emoji\" alt=\"#{text}\" /> <font size=\"2\"><em>#{text} #{days}.</em></font></div>"
       else
         counter = "<div class=\"signature-counter\"><font size=\"2\"><em>#{text} #{days}.</em></font></div>"
@@ -256,32 +224,22 @@ class PostUserExtraUtils
   
   def self.get_counter_hobby(custom_fields)
     counter = ""
-    days = count_days(custom_fields['signature_no_drink'])
+    days = count_days(custom_fields['signature_hobby'])
     if days != "" then
-      text = get_text(custom_fields, "signature_hobby_text", "С хобби")
-      if custom_fields['img_signature_hobby_1'] then
+      text = custom_fields['counter_hobby_text'] != nil && custom_fields['counter_hobby_text'] != "" ? custom_fields['counter_hobby_text'] : "С хобби"
+      if custom_fields['counter_hobby_img'] == nil || custom_fields['counter_clear_home_img'] == "" then
         counter = "<div class=\"signature-counter\"><img src=\"/plugins/discourse-post-user-extras/images/hobby.png\" title=\"#{text}\" class=\"emoji\" alt=\"#{text}\" /> <font size=\"2\"><em>#{text} #{days}.</em></font></div>"
-      elsif custom_fields['img_signature_hobby_2'] then
+      elsif custom_fields['counter_clear_home_img'] == "1" then
         counter = "<div class=\"signature-counter\"><img src=\"/plugins/discourse-post-user-extras/images/puzzle.png\" title=\"#{text}\" class=\"emoji\" alt=\"#{text}\" /> <font size=\"2\"><em>#{text} #{days}.</em></font></div>"
-      elsif custom_fields['img_signature_hobby_3'] then
+      elsif custom_fields['counter_clear_home_img'] == "2" then
         counter = "<div class=\"signature-counter\"><img src=\"/plugins/discourse-post-user-extras/images/jigsaw.png\" title=\"#{text}\" class=\"emoji\" alt=\"#{text}\" /> <font size=\"2\"><em>#{text} #{days}.</em></font></div>"
-      elsif custom_fields['img_signature_hobby_4'] then
+      elsif custom_fields['counter_clear_home_img'] == "3" then
         counter = "<div class=\"signature-counter\"><img src=\"/plugins/discourse-post-user-extras/images/hiking.png\" title=\"#{text}\" class=\"emoji\" alt=\"#{text}\" /> <font size=\"2\"><em>#{text} #{days}.</em></font></div>"
       else
         counter = "<div class=\"signature-counter\"><font size=\"2\"><em>#{text} #{days}.</em></font></div>"
       end
     end
     return counter
-  end
-
-  def self.get_text(custom_fields, name, default)
-    text = ""
-    if custom_fields[name + '_check'] then
-      text = custom_fields[name] != nil ? custom_fields[name] : ""
-    else 
-      text = default
-    end
-    return text
   end
 
   def self.count_days(date)
@@ -310,20 +268,4 @@ class PostUserExtraUtils
   def self.get_trust_level_title(trust_level)
     return trust_level == 0 ? "новичок" : trust_level == 1 ? "участник" : trust_level == 2 ? "участник +" : trust_level == 3 ? "постоялец" : trust_level == 4 ? "лидер" : "";
   end
-
-  #def self.parse_signature(signature)
-  #  result = "";
-  #  if signature != nil then
-  #    while signature.include? "<span data-date" do
-  #      result += signature[0, signature.index("<span data-date")]
-  #      signature = signature[signature.index("UTC\">") + 5...signature.length - 1]
-  #      indexLast = signature.index("</span>")
-  #      date = signature[0, indexLast]
-  #      result += count_days(date)
-  #      signature = signature[indexLast + 7...signature.length - 1]
-  #    end
-  #    result += signature
-  #  end
-  #  return result
-  #end
 end

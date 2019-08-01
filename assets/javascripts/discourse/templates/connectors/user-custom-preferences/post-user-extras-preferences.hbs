@@ -37,33 +37,33 @@
       Не курю
     </label>
     <div class="controls">
-      <label class='text-label'>
+      <label class='text-label counter'>
         {{radio-button class="subscription-choice" name="counter_no_smoking_img" value="" selection=model.custom_fields.counter_no_smoking_img}}
         <img src="/plugins/discourse-post-user-extras/images/nosmoking.png" style="width: 24px;padding-right: 4px;" />
       </label>
-      <label class='text-label'>
+      <label class='text-label counter'>
         {{radio-button class="subscription-choice" name="counter_no_smoking_img" value="1" selection=model.custom_fields.counter_no_smoking_img}}
         <img src="/plugins/discourse-post-user-extras/images/cigarette.png" style="width: 24px;padding-right: 4px;" />
       </label>
-      <label class='text-label'>
+      <label class='text-label counter'>
         {{radio-button class="subscription-choice" name="counter_no_smoking_img" value="2" selection=model.custom_fields.counter_no_smoking_img}}
         <img src="/plugins/discourse-post-user-extras/images/no-smoking.png" style="width: 24px;padding-right: 4px;" />
       </label>
-      <label class='text-label'>
+      <label class='text-label counter'>
         {{radio-button class="subscription-choice" name="counter_no_smoking_img" value="3" selection=model.custom_fields.counter_no_smoking_img}}
         <img src="/plugins/discourse-post-user-extras/images/quit-smoking-1.png" style="width: 24px;padding-right: 4px;" />
       </label>
-      <label class='text-label'>
+      <label class='text-label counter'>
         {{radio-button class="subscription-choice" name="counter_no_smoking_img" value="4" selection=model.custom_fields.counter_no_smoking_img}}
         <img src="/plugins/discourse-post-user-extras/images/quit-smoking.png" style="width: 24px;padding-right: 4px;" />
       </label>
-      <label class='text-label'>
+      <label class='text-label counter'>
         {{radio-button class="subscription-choice" name="counter_no_smoking_img" value="5" selection=model.custom_fields.counter_no_smoking_img}}
         <img src="/plugins/discourse-post-user-extras/images/no_smoking3.png" style="width: 24px;padding-right: 4px;" />
       </label>
-      <label class='text-label'>
+      <label class='text-label counter'>
         {{radio-button class="subscription-choice" name="counter_no_smoking_img" value="6" selection=model.custom_fields.counter_no_smoking_img}}
-        Без иеонки
+        Без иконки
       </label>
     </div>
     <div class="controls">
@@ -76,7 +76,7 @@
     <div class="controls">
       <div class="desc"><b>Дата</b></div>
       <label class='text-label'>
-        {{input type="text" class="input-medium" value=model.custom_fields.counter_no_smoking_date}}
+        {{input type="text" class="input-medium" value=model.custom_fields.signature_no_smoking}}
       </label>
       <div class="desc"><i>дату пишите в формате "год-месяц-день", пример: 2019-03-25</i></div>
     </div>
@@ -86,25 +86,33 @@
       Не пью
     </label>
     <div class="controls">
-      <label class='text-label'>
-        {{input type="checkbox" checked=model.custom_fields.img_signature_no_drink_1}}
+      <label class='text-label counter'>
+        {{radio-button class="subscription-choice" name="counter_no_drink_img" value="" selection=model.custom_fields.counter_no_drink_img}}
         <img src="/plugins/discourse-post-user-extras/images/nodrink.png" style="width: 24px;padding-right: 4px;" />
-        {{input type="checkbox" checked=model.custom_fields.img_signature_no_drink_2}}
+      </label>
+      <label class='text-label counter'>
+        {{radio-button class="subscription-choice" name="counter_no_drink_img" value="1" selection=model.custom_fields.counter_no_drink_img}}
         <img src="/plugins/discourse-post-user-extras/images/no-alcohol.png" style="width: 24px;padding-right: 4px;" />
-        {{input type="checkbox" checked=model.custom_fields.img_signature_no_drink_3}}
+      </label>
+      <label class='text-label counter'>
+        {{radio-button class="subscription-choice" name="counter_no_drink_img" value="2" selection=model.custom_fields.counter_no_drink_img}}
         <img src="/plugins/discourse-post-user-extras/images/no-drinking.png" style="width: 24px;padding-right: 4px;" />
-        {{input type="checkbox" checked=model.custom_fields.img_signature_no_drink_4}}
+      </label>
+      <label class='text-label counter'>
+        {{radio-button class="subscription-choice" name="counter_no_drink_img" value="3" selection=model.custom_fields.counter_no_drink_img}}
         <img src="/plugins/discourse-post-user-extras/images/no-drinks.png" style="width: 24px;padding-right: 4px;" />
       </label>
-      <div class="desc"><i>будет использовано первое выбранное изображение</i></div>
+      <label class='text-label counter'>
+        {{radio-button class="subscription-choice" name="counter_no_drink_img" value="4" selection=model.custom_fields.counter_no_drink_img}}
+        Без иконки
+      </label>
     </div>
     <div class="controls">
-      <div class="desc"><b>Свой текст у счётчика</b></div>
       <label class='text-label'>
-        {{input type="checkbox" checked=model.custom_fields.signature_no_drink_text_check}}
-        {{input type="text" class="input-medium" value=model.custom_fields.signature_no_drink_text}}
+        {{input type="text" class="input-medium" value=model.custom_fields.counter_no_drink_text}}
         &nbsp;&nbsp;&nbsp;N дней
       </label>
+      <div class="desc"><i>Если поле оставить пустым, то текст будет - Не пью N дней.</i></div>
     </div>
     <div class="controls">
       <div class="desc"><b>Дата</b></div>
@@ -119,23 +127,29 @@
       На правильном питании
     </label>
     <div class="controls">
-      <label class='text-label'>
-        {{input type="checkbox" checked=model.custom_fields.img_signature_proper_nutrition_1}}
+      <label class='text-label counter'>
+        {{radio-button class="subscription-choice" name="counter_proper_nutrition_img" value="" selection=model.custom_fields.counter_proper_nutrition_img}}
         <img src="/plugins/discourse-post-user-extras/images/pp.png" style="width: 24px;padding-right: 4px;" />
-        {{input type="checkbox" checked=model.custom_fields.img_signature_proper_nutrition_2}}
+      </label>
+      <label class='text-label counter'>
+        {{radio-button class="subscription-choice" name="counter_proper_nutrition_img" value="1" selection=model.custom_fields.counter_proper_nutrition_img}}
         <img src="/plugins/discourse-post-user-extras/images/diet2.png" style="width: 24px;padding-right: 4px;" />
-        {{input type="checkbox" checked=model.custom_fields.img_signature_proper_nutrition_3}}
+      </label>
+      <label class='text-label counter'>
+        {{radio-button class="subscription-choice" name="counter_proper_nutrition_img" value="2" selection=model.custom_fields.counter_proper_nutrition_img}}
         <img src="/plugins/discourse-post-user-extras/images/salad.png" style="width: 24px;padding-right: 4px;" />
       </label>
-      <div class="desc"><i>будет использовано первое выбранное изображение</i></div>
+      <label class='text-label counter'>
+        {{radio-button class="subscription-choice" name="counter_proper_nutrition_img" value="3" selection=model.custom_fields.counter_proper_nutrition_img}}
+        Без иконки
+      </label>
     </div>
     <div class="controls">
-      <div class="desc"><b>Свой текст у счётчика</b></div>
       <label class='text-label'>
-        {{input type="checkbox" checked=model.custom_fields.signature_proper_nutrition_text_check}}
-        {{input type="text" class="input-medium" value=model.custom_fields.signature_proper_nutrition_text}}
+        {{input type="text" class="input-medium" value=model.custom_fields.counter_proper_nutrition_text}}
         &nbsp;&nbsp;&nbsp;N дней
       </label>
+      <div class="desc"><i>Если поле оставить пустым, то текст будет - На ПП N дней.</i></div>
     </div>
     <div class="controls">
       <div class="desc"><b>Дата</b></div>
@@ -150,21 +164,25 @@
       На спорте
     </label>
     <div class="controls">
-      <label class='text-label'>
-        {{input type="checkbox" checked=model.custom_fields.img_signature_fitnes_1}}
+      <label class='text-label counter'>
+        {{radio-button class="subscription-choice" name="counter_fitnes_img" value="" selection=model.custom_fields.counter_fitnes_img}}
         <img src="/plugins/discourse-post-user-extras/images/fit.png" style="width: 24px;padding-right: 4px;" />
-        {{input type="checkbox" checked=model.custom_fields.img_signature_fitnes_2}}
+      </label>
+      <label class='text-label counter'>
+        {{radio-button class="subscription-choice" name="counter_fitnes_img" value="1" selection=model.custom_fields.counter_fitnes_img}}
         <img src="/plugins/discourse-post-user-extras/images/strong.png" style="width: 24px;padding-right: 4px;" />
       </label>
-      <div class="desc"><i>будет использовано первое выбранное изображение</i></div>
+      <label class='text-label counter'>
+        {{radio-button class="subscription-choice" name="counter_fitnes_img" value="2" selection=model.custom_fields.counter_fitnes_img}}
+        Без иконки
+      </label>
     </div>
     <div class="controls">
-      <div class="desc"><b>Свой текст у счётчика</b></div>
       <label class='text-label'>
-        {{input type="checkbox" checked=model.custom_fields.signature_fitnes_text_check}}
-        {{input type="text" class="input-medium" value=model.custom_fields.signature_fitnes_text}}
+        {{input type="text" class="input-medium" value=model.custom_fields.counter_fitnes_text}}
         &nbsp;&nbsp;&nbsp;N дней
       </label>
+      <div class="desc"><i>Если поле оставить пустым, то текст будет - На спорте N дней.</i></div>
     </div>
     <div class="controls">
       <div class="desc"><b>Дата</b></div>
@@ -179,23 +197,29 @@
       В доме чисто
     </label>
     <div class="controls">
-      <label class='text-label'>
-        {{input type="checkbox" checked=model.custom_fields.img_signature_clear_home_1}}
+      <label class='text-label counter'>
+        {{radio-button class="subscription-choice" name="counter_clear_home_img" value="" selection=model.custom_fields.counter_clear_home_img}}
         <img src="/plugins/discourse-post-user-extras/images/home.png" style="width: 24px;padding-right: 4px;" />
-        {{input type="checkbox" checked=model.custom_fields.img_signature_clear_home_2}}
+      </label>
+      <label class='text-label counter'>
+        {{radio-button class="subscription-choice" name="counter_clear_home_img" value="1" selection=model.custom_fields.counter_clear_home_img}}
         <img src="/plugins/discourse-post-user-extras/images/home2.png" style="width: 24px;padding-right: 4px;" />
-        {{input type="checkbox" checked=model.custom_fields.img_signature_clear_home_3}}
+      </label>
+      <label class='text-label counter'>
+        {{radio-button class="subscription-choice" name="counter_clear_home_img" value="2" selection=model.custom_fields.counter_clear_home_img}}
         <img src="/plugins/discourse-post-user-extras/images/house.png" style="width: 24px;padding-right: 4px;" />
       </label>
-      <div class="desc"><i>будет использовано первое выбранное изображение</i></div>
+      <label class='text-label counter'>
+        {{radio-button class="subscription-choice" name="counter_clear_home_img" value="3" selection=model.custom_fields.counter_clear_home_img}}
+        Без иконки
+      </label>
     </div>
     <div class="controls">
-      <div class="desc"><b>Свой текст у счётчика</b></div>
       <label class='text-label'>
-        {{input type="checkbox" checked=model.custom_fields.signature_clear_home_text_check}}
-        {{input type="text" class="input-medium" value=model.custom_fields.signature_clear_home_text}}
+        {{input type="text" class="input-medium" value=model.custom_fields.counter_clear_home_text}}
         &nbsp;&nbsp;&nbsp;N дней
       </label>
+      <div class="desc"><i>Если поле оставить пустым, то текст будет - В доме чисто N дней.</i></div>
     </div>
     <div class="controls">
       <div class="desc"><b>Дата</b></div>
@@ -210,25 +234,33 @@
       С хобби
     </label>
     <div class="controls">
-      <label class='text-label'>
-        {{input type="checkbox" checked=model.custom_fields.img_signature_hobby_1}}
+      <label class='text-label counter'>
+        {{radio-button class="subscription-choice" name="counter_hobby_img" value="" selection=model.custom_fields.counter_hobby_img}}
         <img src="/plugins/discourse-post-user-extras/images/hobby.png" style="width: 24px;padding-right: 4px;" />
-        {{input type="checkbox" checked=model.custom_fields.img_signature_hobby_2}}
+      </label>
+      <label class='text-label counter'>
+        {{radio-button class="subscription-choice" name="counter_hobby_img" value="1" selection=model.custom_fields.counter_hobby_img}}
         <img src="/plugins/discourse-post-user-extras/images/puzzle.png" style="width: 24px;padding-right: 4px;" />
-        {{input type="checkbox" checked=model.custom_fields.img_signature_hobby_3}}
+      </label>
+      <label class='text-label counter'>
+        {{radio-button class="subscription-choice" name="counter_hobby_img" value="2" selection=model.custom_fields.counter_hobby_img}}
         <img src="/plugins/discourse-post-user-extras/images/jigsaw.png" style="width: 24px;padding-right: 4px;" />
-        {{input type="checkbox" checked=model.custom_fields.img_signature_hobby_4}}
+      </label>
+      <label class='text-label counter'>
+        {{radio-button class="subscription-choice" name="counter_hobby_img" value="3" selection=model.custom_fields.counter_hobby_img}}
         <img src="/plugins/discourse-post-user-extras/images/hiking.png" style="width: 24px;padding-right: 4px;" />
       </label>
-      <div class="desc"><i>будет использовано первое выбранное изображение</i></div>
+      <label class='text-label counter'>
+        {{radio-button class="subscription-choice" name="counter_hobby_img" value="4" selection=model.custom_fields.counter_hobby_img}}
+        Без иконки
+      </label>
     </div>
     <div class="controls">
-      <div class="desc"><b>Свой текст у счётчика</b></div>
       <label class='text-label'>
-        {{input type="checkbox" checked=model.custom_fields.signature_hobby_text_check}}
-        {{input type="text" class="input-medium" value=model.custom_fields.signature_hobby_text}}
+        {{input type="text" class="input-medium" value=model.custom_fields.counter_hobby_text}}
         &nbsp;&nbsp;&nbsp;N дней
       </label>
+      <div class="desc"><i>Если поле оставить пустым, то текст будет - С хобби N дней.</i></div>
     </div>
     <div class="controls">
       <div class="desc"><b>Дата</b></div>
