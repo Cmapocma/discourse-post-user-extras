@@ -108,11 +108,12 @@ after_initialize do
       {}
       else
         {
-          user_groups: object.user.custom_fields['user_groups'],
           trust_level: object.user.trust_level,
           trust_level_title: PostUserExtraUtils.get_trust_level_title(object.user.trust_level),
           admin: object.user.admin,
           moderator: object.user.moderator,
+          primary_group_name: object.user.primary_group_name,
+          primary_group_flair_url: object.user.primary_group_flair_url,
           user_badges: object.user.custom_fields['user_badges'],
           signature_cooked: object.user.custom_fields['signature_cooked'], #PostUserExtraUtils.parse_signature(object.user.custom_fields['signature_cooked']),
           counter_no_smoking: PostUserExtraUtils.get_counter_no_smoking(object.user.custom_fields),
@@ -140,7 +141,6 @@ after_initialize do
         user.custom_fields['signature_cooked'] = PrettyText.cook(user.custom_fields['signature_raw'])
       end
       user.custom_fields['user_badges'] = DB.query_single("select '[' || string_agg('{\"id\":\"'|| b.id || '\", \"name\":\"' || b.name || '\", \"image\":\"' || b.image || '\"}', ',') || ']' from user_badges ub inner join badges b on b.id=ub.badge_id where ub.user_id=#{user.id} and b.enabled=true and b.image is not null and system=false").first
-      user.custom_fields['user_groups'] = DB.query_single("select '[' || string_agg('{\"id\":\"'|| g.id || '\", \"name\":\"' || g.name || '\", \"image\":\"' || g.flair_url || '\"}', ',') || ']' from group_users gu inner join groups g on g.id=gu.group_id where  gu.user_id=#{user.id} and g.flair_url is not null and g.flair_url<>''").first
       user.save
     end
   end

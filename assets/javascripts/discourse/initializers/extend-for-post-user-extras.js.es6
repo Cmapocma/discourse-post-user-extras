@@ -67,6 +67,7 @@ function getArrayIconGroupsAndBadges(currentUser, dec)
   {
     var groups = [];
     groups.push(dec.h("div.user_trust_level_" + post_user_extras.trust_level, { title: post_user_extras.trust_level_title }));
+    
     if (post_user_extras.admin)
     {
       groups.push(dec.h("div.user_admin", { title: "администратор" }));
@@ -75,24 +76,12 @@ function getArrayIconGroupsAndBadges(currentUser, dec)
     {
       groups.push(dec.h("div.user_moderator", { title: "модератор" }));
     }
-    var i;
     
-    if (post_user_extras.user_groups != undefined && post_user_extras.user_groups != '')
+    if (post_user_extras.primary_group_flair_url != undefined && post_user_extras.primary_group_flair_url != '' && !post_user_extras.primary_group_flair_url.includes("fa-"))
     {
-      var user_groups = JSON.parse(post_user_extras.user_groups);
-      for (i = 0; i < user_groups.length; i++)
-      {
-        if (user_groups[i].image.includes("fa-")) 
-        {
-          //const covertedIcon = convertIconClass(user_groups[i].image);
-          //groups.push(dec.h("div.fa", { title: user_groups[i].name, style: "background:#" + user_groups[i].flair_bg_color + ";color:#" + user_groups[i].flair_color }, [ iconNode(covertedIcon) ]));
-        }
-        else 
-        {
-          groups.push(dec.h("div", { title: user_groups[i].name, style: "background-image:url(" + user_groups[i].image + ");" }));
-        }
-      }
+      groups.push(dec.h("div", { title: post_user_extras.primary_group_name, style: "background-image:url(" + post_user_extras.primary_group_flair_url + ");" }));
     }
+
     array.push(groups);
   }
 
