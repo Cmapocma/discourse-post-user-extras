@@ -3,29 +3,60 @@ import RawHtml from "discourse/widgets/raw-html";
 
 function attachPostUserExtras(api, controller) 
 {
-  api.includePostAttributes("post_user_extras");
+  const currentUser = api.getCurrentUser();
+  if (currentUser) 
+  {
+    api.includePostAttributes("post_user_extras");
 
-  var elementname = controller.site.mobileView ? "poster-name:after" : "post-avatar:after";
-  var divname = controller.site.mobileView ? "div.group-icon-widget-mobile" : "div.group-icon-widget";
+    var elementname = controller.site.mobileView ? "poster-name:after" : "post-avatar:after";
+    var divname = controller.site.mobileView ? "div.group-icon-widget-mobile" : "div.group-icon-widget";
 
-  api.decorateWidget(elementname, dec => {
-    if (!Ember.isEmpty(dec.attrs.post_user_extras)) 
-    {
-      const currentUser = api.getCurrentUser();
-      if (currentUser) 
+    api.decorateWidget(elementname, dec => {
+      var post_user_extras = dec.attrs.post_user_extras;
+      if (!Ember.isEmpty(post_user_extras)) 
       {
-        var array = getArrayIconGroupsAndBadges(currentUser, dec);
+        var array = [];
+        const see_groups_icon = currentUser.get("custom_fields.see_groups_icon");
+        if (see_groups_icon) 
+        {
+          var groups = [];
+          groups.push(dec.h("div.user_trust_level_" + post_user_extras.trust_level, { title: post_user_extras.trust_level_title }));
+    
+          if (post_user_extras.admin)
+          {
+            groups.push(dec.h("div.user_admin", { title: "администратор" }));
+          }
+          else if (post_user_extras.moderator)
+          {
+            groups.push(dec.h("div.user_moderator", { title: "модератор" }));
+          }
+
+          array.push(groups);
+        }
+
+        const see_badges_icon = currentUser.get("custom_fields.see_badges_icon");
+        if (see_badges_icon) 
+        {
+          var user_badges = post_user_extras.user_badges;
+          if (user_badges != undefined && user_badges != '')
+          {
+            var userbadges = [];
+            var badges = JSON.parse(user_badges);
+            var j;
+            for (j = 0; j < badges.length; j++)
+            {
+              userbadges.push(dec.h("div", { title: badges[j].name, style: "background-image:url(" + badges[j].image + ");" }));
+            }
+            array.push(userbadges);
+          }
+        }
         return dec.h(divname, array);
       }
-    }
-  });
+    });
 
-  api.decorateWidget("post-contents:after-cooked", dec => {
-    const post_user_extras = dec.attrs.post_user_extras;
-    if (!Ember.isEmpty(post_user_extras)) 
-    {
-      const currentUser = api.getCurrentUser();
-      if (currentUser) 
+    api.decorateWidget("post-contents:after-cooked", dec => {
+      const post_user_extras = dec.attrs.post_user_extras;
+      if (!Ember.isEmpty(post_user_extras)) 
       {
         const enabled = currentUser.get("custom_fields.see_signatures");
         if (enabled) 
@@ -44,50 +75,8 @@ function attachPostUserExtras(api, controller)
           }
         }
       }
-    }
-  });
-}
-
-function getArrayIconGroupsAndBadges(currentUser, dec)
-{
-  var post_user_extras = dec.attrs.post_user_extras;
-  var array = [];
-  const see_groups_icon = currentUser.get("custom_fields.see_groups_icon");
-  if (see_groups_icon) 
-  {
-    var groups = [];
-    groups.push(dec.h("div.user_trust_level_" + post_user_extras.trust_level, { title: post_user_extras.trust_level_title }));
-    
-    if (post_user_extras.admin)
-    {
-      groups.push(dec.h("div.user_admin", { title: "администратор" }));
-    }
-    else if (post_user_extras.moderator)
-    {
-      groups.push(dec.h("div.user_moderator", { title: "модератор" }));
-    }
-
-    array.push(groups);
+    });
   }
-
-  const see_badges_icon = currentUser.get("custom_fields.see_badges_icon");
-  if (see_badges_icon) 
-  {
-    var user_badges = post_user_extras.user_badges;
-    if (user_badges != undefined && user_badges != '')
-    {
-      var userbadges = [];
-      var badges = JSON.parse(user_badges);
-      var j;
-      for (j = 0; j < badges.length; j++)
-      {
-        userbadges.push(dec.h("div", { title: badges[j].name, style: "background-image:url(" + badges[j].image + ");" }));
-      }
-      array.push(userbadges);
-    }
-  }
-
-  return array;
 }
 
 export default 
