@@ -5,8 +5,8 @@ function attachPostUserExtras(api, siteSettings)
 {
   api.includePostAttributes("post_user_extras");
 
-  var elementname = siteSettings.enable_mobile_theme ? "poster-name:after" : "post-avatar:after";
-  var divname = siteSettings.enable_mobile_theme ? "div.group-icon-widget-mobile" : "div.group-icon-widget";
+  var elementname = Discourse.Site.mobileView ? "poster-name:after" : "post-avatar:after";
+  var divname = Discourse.Site.mobileView ? "div.group-icon-widget-mobile" : "div.group-icon-widget";
 
   api.decorateWidget(elementname, dec => {
     if (!Ember.isEmpty(dec.attrs.post_user_extras)) 
