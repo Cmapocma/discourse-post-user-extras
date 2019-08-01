@@ -46,7 +46,7 @@ function attachPostUserExtras(api)
           const result_fitnes = setСounter(post_user_extras.signature_fitnes, post_user_extras.signature_fitnes_text, post_user_extras.img_signature_fitnes);
           const result_clear_home = setСounter(post_user_extras.signature_clear_home, post_user_extras.signature_clear_home_text, post_user_extras.img_signature_clear_home);
           const result_hobby = setСounter(post_user_extras.signature_hobby,  post_user_extras.signature_hobby_text, post_user_extras.img_signature_hobby);
-          const signature_cooked = post_user_extras.signature_cooked;
+          const signature_cooked = post_user_extras.signature_cooked != undefined && post_user_extras.signature_cooked != null && post_user_extras.signature_cooked != 'null' ? post_user_extras.signature_cooked : '';
         
           if (result_no_smoking != '' || result_no_drink != '' || result_proper_nutrition != '' || result_fitnes != '' || result_clear_home != '' || result_hobby != '' || signature_cooked != '') 
           {
