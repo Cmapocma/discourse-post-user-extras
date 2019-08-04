@@ -65,6 +65,7 @@ after_initialize do
       else
         {
           trust_level: object.user.trust_level,
+          trust_level_href: PostUserExtraUtils.get_trust_level_href(trust_level, object.user.username_lower),
           trust_level_title: PostUserExtraUtils.get_trust_level_title(object.user.trust_level),
           admin: object.user.admin,
           moderator: object.user.moderator,
@@ -257,15 +258,19 @@ class PostUserExtraUtils
         hrs = time % 24
         time /= 24
         days = time.to_s
-        last = days[days.length - 1];
-        last2 = days.length > 1 ? days[days.length - 2, 2] : days;
-        result = days + ' ' + (last == '1' && last2 != '11' ? 'день' : (last == '2' || last == '3' || last == '4') && last2 != '12' && last2 != '13' && last2 != '14' ? 'дня' : 'дней');
+        last = days[days.length - 1]
+        last2 = days.length > 1 ? days[days.length - 2, 2] : days
+        result = days + ' ' + (last == '1' && last2 != '11' ? 'день' : (last == '2' || last == '3' || last == '4') && last2 != '12' && last2 != '13' && last2 != '14' ? 'дня' : 'дней')
       end
     end
     return result
   end
 
   def self.get_trust_level_title(trust_level)
-    return trust_level == 0 ? "новичок" : trust_level == 1 ? "участник" : trust_level == 2 ? "участник +" : trust_level == 3 ? "постоялец" : trust_level == 4 ? "лидер" : "";
+    return trust_level == 0 ? "новичок" : trust_level == 1 ? "участник" : trust_level == 2 ? "участник +" : trust_level == 3 ? "постоялец" : trust_level == 4 ? "лидер" : ""
+  end
+
+  def self.get_trust_level_href(trust_level, name)
+    return trust_level == 0 ? ("/u/" + name + "/summary") : ("/badges/" + post_user_extras.trust_level + "/badge")
   end
 end

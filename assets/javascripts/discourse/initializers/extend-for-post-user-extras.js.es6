@@ -20,15 +20,15 @@ function attachPostUserExtras(api, controller)
         if (see_groups_icon) 
         {
           var groups = [];
-          groups.push(dec.h("div.user_trust_level_" + post_user_extras.trust_level, { title: post_user_extras.trust_level_title }));
+          groups.push(dec.h("a", { href: post_user_extras.trust_level_href }, [dec.h("div.user_trust_level_" + post_user_extras.trust_level, { title: post_user_extras.trust_level_title })]));
     
           if (post_user_extras.admin)
           {
-            groups.push(dec.h("div.user_admin", { title: "администратор" }));
+            groups.push(dec.h("a", { href: "/about" }, [dec.h("div.user_admin", { title: "администратор" })]));
           }
           else if (post_user_extras.moderator)
           {
-            groups.push(dec.h("div.user_moderator", { title: "модератор" }));
+            groups.push(dec.h("a", { href: "/about" }, [dec.h("div.user_moderator", { title: "модератор" })]));
           }
 
           array.push(groups);
@@ -45,7 +45,7 @@ function attachPostUserExtras(api, controller)
             var j;
             for (j = 0; j < badges.length; j++)
             {
-              userbadges.push(dec.h("div", { title: badges[j].name, style: "background-image:url(" + badges[j].image + ");" }));
+              userbadges.push(dec.h("a", { href: "/badges/" + badges[j].id + "/badge" }, [dec.h("div", { title: badges[j].name, style: "background-image:url(" + badges[j].image + ");" })]));
             }
             array.push(userbadges);
           }
