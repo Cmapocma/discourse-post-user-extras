@@ -271,6 +271,6 @@ class PostUserExtraUtils
   end
 
   def self.get_trust_level_href(trust_level, name)
-    return trust_level == 0 ? ("/u/" + name + "/summary") : ("/badges/" + post_user_extras.trust_level + "/badge")
+    return trust_level == 0 ? ("/u/" + name + "/summary") : ("/badges/" + trust_level + "/badge")
   end
 end
