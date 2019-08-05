@@ -123,13 +123,6 @@ after_initialize do
     end
   end
 
-  DiscourseEvent.on(:user_logged_in) do |user|
-    if SiteSetting.post_user_extras_enabled then
-      user.custom_fields['user_badges'] = DB.query_single("select '[' || string_agg('{\"id\":\"'|| b.id || '\", \"name\":\"' || b.name || '\", \"image\":\"' || b.image || '\"}', ',') || ']' from user_badges ub inner join badges b on b.id=ub.badge_id where ub.user_id=#{user_id} and b.enabled=true and b.image is not null and system=false").first
-      user.save
-    end
-  end
-
 end
 
 register_asset "javascripts/discourse/templates/connectors/user-custom-preferences/post-user-extras-preferences.hbs"
