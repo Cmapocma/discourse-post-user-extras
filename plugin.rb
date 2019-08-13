@@ -267,7 +267,7 @@ class PostUserExtraUtils
 
   def self.count_days(date)
     result = ""
-    if date != nil && date != "" && date.length > 8 && date.length < 11 && date.exclude? "," then
+    if date != nil && date != "" && date.length > 8 && date.length < 11 && date.exclude?(",") then
       past = Time.parse(date)
       if past != nil then
         now = Time.new
